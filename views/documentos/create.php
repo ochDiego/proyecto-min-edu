@@ -23,7 +23,7 @@
             <div class="col-12">
                 <h1 class="text-center"><?= $data['titulo'] ?></h1>
 
-                <a name="" id="" class="btn btn-primary" href="#" role="button">Lista de documentos</a>
+                <a name="" id="" class="btn btn-primary" href="index.php" role="button">Lista de documentos</a>
             </div>
         </div>
 

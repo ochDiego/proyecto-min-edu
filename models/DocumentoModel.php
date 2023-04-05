@@ -91,7 +91,7 @@
 
         public function insertNotas($objeto,$docVinculado,$notaContenido,$lugarRedaccion,$natuAlcanceForma,$vigencia,$numDecreto,$aprobadoLey)
         {
-            $sentencia=$this->db->prepare("sp_insert_notas(?,?,?,?,?,?,?,?)");
+            $sentencia=$this->db->prepare("CALL sp_insert_notas(?,?,?,?,?,?,?,?)");
             $sentencia->bindParam(1,$objeto);
             $sentencia->bindParam(2,$docVinculado);
             $sentencia->bindParam(3,$notaContenido);

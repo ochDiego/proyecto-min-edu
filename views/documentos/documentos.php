@@ -1,17 +1,30 @@
 <?php require_once 'views/templates/header.php'; ?>
 
+        <?php if(isset($_SESSION['msj'])): ?>
+
+                <script>
+                    Swal.fire({
+                    title: '<?= $_SESSION['msj']; ?>',
+                    icon: 'success'
+                    })
+                </script>
+
+        <?php session_unset(); endif ?>
+
+
+
         <div class="row my-3">
             <div class="col-12">
                 <h1 class="text-center"><?= $data['titulo'] ?></h1>
 
-                <a name="" id="" class="btn btn-primary" href="#" role="button">Nuevo registro</a>
+                <a name="" id="" class="btn btn-primary" href="index.php?c=Documento&m=create" role="button">Nuevo registro</a>
             </div>
         </div>
 
         <div class="row my-3">
             <div class="col-12">
                 <div class="table-responsive-sm">
-                    <table class="table table-striped table-sm">
+                    <table class="table table-striped table-bordered table-sm">
                         <thead class="table-dark">
                             <tr>
                                 <th class="text-center" scope="col">Título</th>
@@ -51,3 +64,4 @@
 
 <?php require_once 'views/templates/footer.php'; ?>
 <script src="assets/js/dataTables.js"></script>
+

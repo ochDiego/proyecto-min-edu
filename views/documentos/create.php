@@ -21,7 +21,7 @@
   <main class="container-fluid p-3">
         <div class="row my-3">
             <div class="col-12">
-                <h1 class="text-center">Crear registro</h1>
+                <h1 class="text-center"><?= $data['titulo'] ?></h1>
 
                 <a name="" id="" class="btn btn-primary" href="#" role="button">Lista de documentos</a>
             </div>
@@ -29,13 +29,24 @@
 
         <div class="row my-3">
             <div class="col-12">
+
+                <?php if(isset($_SESSION['msj'])): ?>
+
+                    <div class="alert alert-<?= $_SESSION['msj_type']; ?> alert-dismissible fade show" role="alert">
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    
+                      <small><?= $_SESSION['msj']; ?></small>
+                    </div>
+                    
+
+                <?php session_unset(); endif ?>
                
                 <div class="card">
                     <div class="card-header">
                         Datos del documento
                     </div>
                     <div class="card-body">
-                       <form class="row" action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                       <form class="row" action="index.php?c=Documento&m=store" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <div class="col-3">
                                 <div class="mb-3">
                                   <label for="titulo" class="form-label">Título:</label>
@@ -52,15 +63,15 @@
 
                             <div class="col-3">
                                 <div class="mb-3">
-                                  <label for="autor" class="form-label">Nombre del autor:</label>
-                                  <input type="text" name="autor" id="autor" class="form-control form-control-sm" placeholder="Ingrese el nombre" aria-describedby="helpId" autofocus required>
+                                  <label for="nombreAutor" class="form-label">Nombre del autor:</label>
+                                  <input type="text" name="nombreAutor" id="nombreAutor" class="form-control form-control-sm" placeholder="Ingrese el nombre" aria-describedby="helpId" autofocus required>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="mb-3">
-                                  <label for="apellido" class="form-label">Apellido del autor:</label>
-                                  <input type="text" name="apellido" id="apellido" class="form-control form-control-sm" placeholder="Ingrese el apellido" aria-describedby="helpId" autofocus required>
+                                  <label for="apellidoAutor" class="form-label">Apellido del autor:</label>
+                                  <input type="text" name="apellidoAutor" id="apellidoAutor" class="form-control form-control-sm" placeholder="Ingrese el apellido" aria-describedby="helpId" autofocus required>
                                 </div>
                             </div>
 
@@ -95,14 +106,21 @@
                             <div class="col-3">
                                 <div class="mb-3">
                                   <label for="otros" class="form-label">Otros:</label>
-                                  <input type="number" name="otros" id="otros" class="form-control form-control-sm" placeholder="Otros..." aria-describedby="helpId" autofocus required>
+                                  <input type="text" name="otros" id="otros" class="form-control form-control-sm" placeholder="Otros..." aria-describedby="helpId" autofocus required>
                                 </div>
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-2">
                                 <div class="mb-3">
-                                  <label for="Objeto" class="form-label">Objeto:</label>
-                                  <input type="text" name="Objeto" id="Objeto" class="form-control form-control-sm" placeholder="Ingrese el objeto" aria-describedby="helpId" autofocus required>
+                                  <label for="formato" class="form-label">Formato:</label>
+                                  <input type="text" name="formato" id="formato" class="form-control form-control-sm" placeholder="Ingrese el formato" aria-describedby="helpId" autofocus required>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="mb-3">
+                                  <label for="objeto" class="form-label">Objeto:</label>
+                                  <input type="text" name="objeto" id="objeto" class="form-control form-control-sm" placeholder="Ingrese el objeto" aria-describedby="helpId" autofocus required>
                                 </div>
                             </div>
 
@@ -120,7 +138,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-2">
                                 <div class="mb-3">
                                   <label for="lugarRedaccion" class="form-label">Lugar de redacción:</label>
                                   <input type="text" name="lugarRedaccion" id="lugarRedaccion" class="form-control form-control-sm" placeholder="Ingrese el lugar" aria-describedby="helpId" autofocus required>

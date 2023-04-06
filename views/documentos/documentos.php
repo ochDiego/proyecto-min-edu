@@ -45,8 +45,31 @@
                                         <td class="text-center"><?= $documento['ubicacion']; ?></td>
                                         <td class="text-center"><?= $documento['responsable']; ?></td>
                                         <td class="text-center">
-                                            <a name="" id="" class="btn btn-info btn-sm" href="#" role="button">Editar</a>
-                                            <a name="" id="" class="btn btn-danger btn-sm" href="#" role="button">Eliminar</a>
+                                            <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>
+                                            
+                                            <!-- Button trigger modal -->
+                                            <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmarModal<?= $documento['idDocumento']; ?>">Eliminar</a>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="confirmarModal<?= $documento['idDocumento']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar este registro?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Una vez eliminado no se podrá recuperar el registro...
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                        
+                                                        <a name="" id="" class="btn btn-danger" href="index.php?c=Documento&m=destroy&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Confirmar</a>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

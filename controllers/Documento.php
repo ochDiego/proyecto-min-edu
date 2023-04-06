@@ -115,4 +115,87 @@
                 }
             }
         }
+
+        public function edit($id=null,$token=null)
+        {
+
+            $tmpToken=hash_hmac('sha1',$id,KEY_TOKEN);
+
+            if($tmpToken!=$token){
+                header("location:index.php");
+            }else{
+                $data['id']=$id;
+                $data['token']=$token;
+                $data['documento']=$this->documento->getDocumento($id);
+                $data['titulo']="Actualizar registro";
+    
+                require_once 'views/documentos/edit.php';
+
+            }
+
+        }
+
+        public function update()
+        {
+            $token=$_POST['token'];
+            $id=$_POST['id'];
+            
+            $titulo=$_POST['titulo'];
+            $expediente=$_POST['expediente'];
+            $apellidoAutor=$_POST['apellidoAutor'];
+            $nombreAutor=$_POST['nombreAutor'];
+
+            $entidad=$_POST['entidad'];
+            $fechaSuscripcion=$_POST['fechaSuscripcion'];
+            $numPag=$_POST['numPag'];
+            $numHojas=$_POST['numHojas'];
+            $otros=$_POST['otros'];
+            
+            $formato=$_POST['formato'];
+            $objeto=$_POST['objeto'];
+            $docVinculado=$_POST['docVinculado'];
+            $notaContenido=$_POST['notaContenido'];
+            $lugarRedaccion=$_POST['lugarRedaccion'];
+
+            $natuAlcanceForma=$_POST['natuAlcanceForma'];
+            $vigencia=$_POST['vigencia'];
+            $numDecreto=$_POST['numDecreto'];
+            $aprobLey=$_POST['aprobLey'];
+            $terminoPropuesto=$_POST['terminoPropuesto'];
+
+            $carpeta=$_POST['carpeta'];
+            $folio=$_POST['folio'];
+            $responsable=$_POST['responsable'];
+
+            $documento=(isset($_FILES['documento']['name']))?$_FILES['documento']['name']:"";
+
+            if(empty($titulo) || empty($expediente) || empty($nombreAutor) || empty($apellidoAutor) || empty($entidad) || empty($fechaSuscripcion) || empty($numPag) || empty($numHojas) || empty($otros) || empty($formato) || empty($objeto) || empty($docVinculado) || empty($notaContenido) || empty($lugarRedaccion) || empty($natuAlcanceForma) || empty($vigencia) || empty($numDecreto) || empty($aprobLey) || empty($carpeta) || empty($terminoPropuesto) || empty($folio) || empty($responsable)){
+                $_SESSION['msj']="Error: Todos los campos son requeridos";
+                $_SESSION['msj_type']="danger";
+
+                header("location:index.php?c=Documento&m=edit&id=$id&token=$token");
+            }else{
+                header("location:index.php");
+            }
+        }
+
+        public function destroy($id=null,$token=null)
+        {
+
+            $tmpToken=hash_hmac('sha1',$id,KEY_TOKEN);
+
+            if($tmpToken!=$token){
+                header("location:index.php");
+            }else{
+                $delDocumento=$this->documento->deleteDocumento($id);
+    
+                if($delDocumento){
+                    $_SESSION['msj']="Documento eliminado con éxito!";
+    
+                    header("location:index.php");
+                }
+
+            }
+
+        }
     }

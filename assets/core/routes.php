@@ -20,13 +20,17 @@
         return $control;
     }
 
-    function cargarMetodo($controlador,$metodo,$id=null)
+    function cargarMetodo($controlador,$metodo,$id=null,$token=null)
     {
         if(isset($metodo) && method_exists($controlador,$metodo)){
             if($id == null){
                 $controlador->$metodo();
             }else{
-                $controlador->$metodo($id);
+                if($token == null){
+                    $controlador->$metodo($id);
+                }else{
+                    $controlador->$metodo($id,$token);
+                }
             }
         }else{
             $controlador->{METODO_PRINCIPAL}();

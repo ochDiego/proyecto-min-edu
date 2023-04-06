@@ -9,4 +9,4 @@
     define("DB_PASSWORD","");
     define("DB_CHARSET","utf8");
 
-    define("KEY_TOKEN","KHÑ.xzf-951*");
+    define("KEY_TOKEN","KHX.xzf-951*");

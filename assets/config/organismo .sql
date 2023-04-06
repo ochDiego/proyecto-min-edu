@@ -29,7 +29,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_documento` (`_id` INT(11)
         	DECLARE existe_documento INT;
         	DECLARE response INT;
             
-            SET existe_documento = (SELECT COUNT(*) FROM documento WHERE id=_id AND activo = 1 LIMIT 1); 
+            SET existe_documento = (SELECT COUNT(*) FROM documento WHERE id=_id AND status = 1 LIMIT 1); 
             IF existe_documento > 0 THEN
             	UPDATE documento SET status = 0 WHERE id=_id;
                 SET response = 1;

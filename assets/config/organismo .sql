@@ -31,7 +31,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_documento` (`_id` INT(11)
             
             SET existe_documento = (SELECT COUNT(*) FROM documento WHERE id=_id AND activo = 1 LIMIT 1); 
             IF existe_documento > 0 THEN
-            	UPDATE documento SET activo = 0 WHERE id=_id;
+            	UPDATE documento SET status = 0 WHERE id=_id;
                 SET response = 1;
             ELSE
             	SET response = 0;
@@ -43,7 +43,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_expediente` (`_expediente
         	DECLARE existe_expediente INT;
         	DECLARE response INT;
             
-            SET existe_expediente = (SELECT COUNT(*) FROM documento WHERE expediente=_expediente AND activo = 1 LIMIT 1);
+            SET existe_expediente = (SELECT COUNT(*) FROM documento WHERE expediente=_expediente AND status = 1 LIMIT 1);
             
             IF existe_expediente > 0 THEN
             	SET response = 1; 
@@ -51,14 +51,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_expediente` (`_expediente
             	SET response = 0;
             END IF;
            
-            SELECT $response;
+            SELECT response;
         END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_fechaSuscripcion` (`_fechaSuscrip` VARCHAR(200))  BEGIN
         	DECLARE existe_fecha INT;
         	DECLARE response INT;
             
-            SET existe_fecha = (SELECT COUNT(*) FROM documento WHERE fechaSuscripcion=_fechaSuscrip AND activo = 1 LIMIT 1);
+            SET existe_fecha = (SELECT COUNT(*) FROM documento WHERE fechaSuscripcion=_fechaSuscrip AND status = 1 LIMIT 1);
             
             IF existe_fecha > 0 THEN
             	SET response = 1; 
@@ -66,14 +66,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_fechaSuscripcion` (`_fech
             	SET response = 0;
             END IF;
            
-            SELECT $response;
+            SELECT response;
         END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_titulo` (`_titulo` VARCHAR(255))  BEGIN
         	DECLARE existe_titulo INT;
         	DECLARE response INT;
             
-            SET existe_titulo = (SELECT COUNT(*) FROM documento WHERE titulo=_titulo AND activo = 1 LIMIT 1);
+            SET existe_titulo = (SELECT COUNT(*) FROM documento WHERE titulo=_titulo AND status = 1 LIMIT 1);
             
             IF existe_titulo > 0 THEN
             	SET response = 1; 
@@ -81,7 +81,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_titulo` (`_titulo` VARCHA
             	SET response = 0;
             END IF;
            
-            SELECT $response;
+            SELECT response;
         END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_autor` (`_nombre` VARCHAR(80), `_apellido` VARCHAR(80))  BEGIN
@@ -108,7 +108,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_documento` (`_titulo` VAR
             INSERT INTO documento(titulo,expediente,mencionResponsabilidad_id,fechaSuscripcion,descripfisica_id,notas_id,terminoPropuesto,ubicacion_id,responsable,archivoAdjunto) VALUES(TRIM(_titulo),TRIM(_expediente),_mencionRespoID,TRIM(_fechaSuscripcion),_descripFisicaID,_notasID,TRIM(_terminoPropuesto),_ubicacionID,TRIM(_responsable),TRIM(_archivoAdjunto));
             SET response = LAST_INSERT_ID();
             
-            SELECT $response;
+            SELECT response;
         END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_entidad` (`_nombre` VARCHAR(50))  BEGIN
@@ -126,7 +126,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_mencionResponsabilidad` (
             INSERT INTO mencionresponsabilidad(autor_id,entidad_id) VALUES(_autorID,_entidadID);
             SET response = LAST_INSERT_ID();
             
-            SELECT $response;
+            SELECT response;
         END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_notas` (`_objeto` VARCHAR(100), `_docVinculado` VARCHAR(150), `_notaContenido` VARCHAR(150), `_lugarRedaccion` VARCHAR(100), `_natuAlcanceForma` VARCHAR(100), `_vigencia` VARCHAR(80), `_numDecreto` VARCHAR(50), `_aprobadoLey` VARCHAR(50))  BEGIN

@@ -15,7 +15,7 @@
 
         <div class="row my-3">
             <div class="col-12">
-                <h1 class="text-center"><?= $data['titulo'] ?></h1>
+                <h2 class="text-center"><?= $data['titulo'] ?></h2>
 
                 <a name="" id="" class="btn btn-primary" href="index.php?c=Documento&m=create" role="button">Nuevo registro</a>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2023 a las 22:00:06
+-- Tiempo de generación: 07-04-2023 a las 16:39:59
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_documento` (`_id` INT(11))  BEGIN
+CREATE PROCEDURE `sp_delete_documento` (IN `_id` INT(11))  BEGIN
         	DECLARE existe_documento INT;
         	DECLARE response INT;
             
@@ -39,7 +39,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_documento` (`_id` INT(11)
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_expediente` (`_expediente` VARCHAR(200))  BEGIN
+CREATE PROCEDURE `sp_existe_expediente` (IN `_expediente` VARCHAR(200))  BEGIN
         	DECLARE existe_expediente INT;
         	DECLARE response INT;
             
@@ -54,7 +54,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_expediente` (`_expediente
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_fechaSuscripcion` (`_fechaSuscrip` VARCHAR(200))  BEGIN
+CREATE PROCEDURE `sp_existe_expediente_update` (`_id` INT, `_expediente` VARCHAR(200))  BEGIN
+        	DECLARE existe_expediente INT;
+            DECLARE response INT;
+            
+            SET existe_expediente = (SELECT COUNT(*) FROM documento WHERE (expediente=_expediente AND id!=_id) AND status=1 LIMIT 1);
+            IF existe_expediente > 0 THEN
+            	SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_existe_fechaSuscripcion` (IN `_fechaSuscrip` VARCHAR(200))  BEGIN
         	DECLARE existe_fecha INT;
         	DECLARE response INT;
             
@@ -69,7 +82,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_fechaSuscripcion` (`_fech
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_titulo` (`_titulo` VARCHAR(255))  BEGIN
+CREATE PROCEDURE `sp_existe_fechaSuscrip_update` (`_id` INT, `_fechaSuscrip` VARCHAR(100))  BEGIN
+        	DECLARE existe_fecha INT;
+        	DECLARE response INT;
+            
+            SET existe_fecha = (SELECT COUNT(*) FROM documento WHERE (fechaSuscripcion=_fechaSuscrip AND id!=_id) AND status=1 LIMIT 1);
+            IF existe_fecha > 0 THEN
+            	SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_existe_titulo` (IN `_titulo` VARCHAR(255))  BEGIN
         	DECLARE existe_titulo INT;
         	DECLARE response INT;
             
@@ -84,7 +111,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_titulo` (`_titulo` VARCHA
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_autor` (`_nombre` VARCHAR(80), `_apellido` VARCHAR(80))  BEGIN
+CREATE PROCEDURE `sp_existe_titulo_update` (`_id` INT, `_titulo` VARCHAR(255))  BEGIN
+        	DECLARE existe_titulo INT;
+            DECLARE response INT;
+            
+            SET existe_titulo = (SELECT COUNT(*) FROM documento WHERE (titulo=_titulo AND id!=_id) AND status=1 LIMIT 1);
+            IF existe_titulo > 0 THEN
+            	SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_insert_autor` (`_nombre` VARCHAR(80), `_apellido` VARCHAR(80))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO autor(nombre,apellido) VALUES(TRIM(_nombre),TRIM(_apellido));
@@ -93,16 +133,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_autor` (`_nombre` VARCHAR
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_descripFisica` (IN `_numPag` VARCHAR(10), IN `_numHojas` VARCHAR(10), IN `_formato` VARCHAR(10), IN `_otros` VARCHAR(100))  BEGIN
+CREATE PROCEDURE `sp_insert_descripFisica` (IN `_numPag` VARCHAR(10), IN `_numHojas` VARCHAR(10), IN `_formato` VARCHAR(10), IN `_otros` VARCHAR(100))  BEGIN
         	DECLARE response INT;
             
-        	INSERT INTO descripfisica(numPag,numHojas,formato,otro) VALUES(TRIM(_numPag),TRIM(_numHojas),TRIM(_formato),TRIM(_otros));
+        	INSERT INTO descripfisica(numPag,numHojas,formato,otros) VALUES(TRIM(_numPag),TRIM(_numHojas),TRIM(_formato),TRIM(_otros));
             SET response = LAST_INSERT_ID();
             
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_documento` (`_titulo` VARCHAR(255), `_expediente` VARCHAR(200), `_mencionRespoID` INT(11), `_fechaSuscripcion` VARCHAR(100), `_descripFisicaID` INT(11), `_notasID` INT(11), `_terminoPropuesto` VARCHAR(22), `_ubicacionID` INT(11), `_responsable` VARCHAR(150), `_archivoAdjunto` VARCHAR(255))  BEGIN
+CREATE PROCEDURE `sp_insert_documento` (IN `_titulo` VARCHAR(255), IN `_expediente` VARCHAR(200), IN `_mencionRespoID` INT(11), IN `_fechaSuscripcion` VARCHAR(100), IN `_descripFisicaID` INT(11), IN `_notasID` INT(11), IN `_terminoPropuesto` VARCHAR(22), IN `_ubicacionID` INT(11), IN `_responsable` VARCHAR(150), IN `_archivoAdjunto` VARCHAR(255))  BEGIN
         	DECLARE response INT;
             
             INSERT INTO documento(titulo,expediente,mencionResponsabilidad_id,fechaSuscripcion,descripfisica_id,notas_id,terminoPropuesto,ubicacion_id,responsable,archivoAdjunto) VALUES(TRIM(_titulo),TRIM(_expediente),_mencionRespoID,TRIM(_fechaSuscripcion),_descripFisicaID,_notasID,TRIM(_terminoPropuesto),_ubicacionID,TRIM(_responsable),TRIM(_archivoAdjunto));
@@ -111,7 +151,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_documento` (`_titulo` VAR
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_entidad` (`_nombre` VARCHAR(50))  BEGIN
+CREATE PROCEDURE `sp_insert_entidad` (`_nombre` VARCHAR(50))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO entidad(nombre) VALUES(TRIM(_nombre));
@@ -120,7 +160,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_entidad` (`_nombre` VARCH
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_mencionResponsabilidad` (`_autorID` INT(11), `_entidadID` INT(11))  BEGIN
+CREATE PROCEDURE `sp_insert_mencionResponsabilidad` (IN `_autorID` INT(11), IN `_entidadID` INT(11))  BEGIN
         	DECLARE response INT;
             
             INSERT INTO mencionresponsabilidad(autor_id,entidad_id) VALUES(_autorID,_entidadID);
@@ -129,7 +169,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_mencionResponsabilidad` (
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_notas` (`_objeto` VARCHAR(100), `_docVinculado` VARCHAR(150), `_notaContenido` VARCHAR(150), `_lugarRedaccion` VARCHAR(100), `_natuAlcanceForma` VARCHAR(100), `_vigencia` VARCHAR(80), `_numDecreto` VARCHAR(50), `_aprobadoLey` VARCHAR(50))  BEGIN
+CREATE PROCEDURE `sp_insert_notas` (`_objeto` VARCHAR(100), `_docVinculado` VARCHAR(150), `_notaContenido` VARCHAR(150), `_lugarRedaccion` VARCHAR(100), `_natuAlcanceForma` VARCHAR(100), `_vigencia` VARCHAR(80), `_numDecreto` VARCHAR(50), `_aprobadoLey` VARCHAR(50))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO notas(objeto,doc_vinculado,nota_contenido,lugar_redaccion,naturaleza_alcance_forma,vigencia,numero_decreto,aprobado_ley) VALUES(TRIM(_objeto),TRIM(_docVinculado),TRIM(_notaContenido),TRIM(_lugarRedaccion),TRIM(_natuAlcanceForma),TRIM(_vigencia),TRIM(_numDecreto),TRIM(_aprobadoLey));
@@ -138,7 +178,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_notas` (`_objeto` VARCHAR
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_ubicacion` (IN `_carpeta` VARCHAR(20), IN `_folio` VARCHAR(20))  BEGIN
+CREATE PROCEDURE `sp_insert_ubicacion` (IN `_carpeta` VARCHAR(20), IN `_folio` VARCHAR(20))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO ubicacion(carpeta,folio) VALUES(TRIM(_carpeta),TRIM(_folio));
@@ -147,8 +187,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_ubicacion` (IN `_carpeta`
             SELECT response;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_documento` (`_id` INT(11))  BEGIN
-        	SELECT titulo,expediente,fechaSuscripcion, a.nombre AS nombreAutor, a.apellido AS apellidoAutor, e.nombre AS entidad,formato, numHojas,numPag,otros,doc_vinculado,lugar_redaccion,naturaleza_alcance_forma,nota_contenido,numero_decreto,objeto, aprobado_ley,vigencia,terminoPropuesto,carpeta,folio,responsable,archivoAdjunto 
+CREATE PROCEDURE `sp_select_archivo` (`_id` INT)  BEGIN
+        	SELECT archivoAdjunto FROM documento WHERE id=_id AND status = 1 LIMIT 1;
+        END$$
+
+CREATE PROCEDURE `sp_select_documento` (IN `_id` INT(11))  BEGIN
+        	SELECT f.id AS descripFisicaID, n.id AS notasID, u.id AS ubicacionID, a.id AS autorID, e.id AS entidadID,titulo,expediente,fechaSuscripcion, a.nombre AS nombreAutor, a.apellido AS apellidoAutor, e.nombre AS entidad,formato, numHojas,numPag,otros,doc_vinculado,lugar_redaccion,naturaleza_alcance_forma,nota_contenido,numero_decreto,objeto, aprobado_ley,vigencia,terminoPropuesto,carpeta,folio,responsable,archivoAdjunto 
 		FROM documento d 
 		INNER JOIN descripfisica f 
 		ON d.descripfisica_id = f.id 
@@ -166,7 +210,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_documento` (`_id` INT(11)
 		AND d.status = 1;
         END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_documentos` ()  BEGIN
+CREATE PROCEDURE `sp_select_documentos` ()  BEGIN
         	SELECT d.id AS idDocumento, f.id AS idDescripFisica, n.id AS idNotas, u.id AS idUbicacion, a.id AS idAutor, e.id AS idEntidad, d.titulo, d.expediente, d.fechaSuscripcion, CONCAT(a.nombre,' ',a.apellido) AS autor, CONCAT_WS(' ', f.formato, f.numHojas, f.numPag, f.otros) AS descripFisica, CONCAT_WS(' ', n.doc_vinculado, n.lugar_redaccion, n.naturaleza_alcance_forma, n.nota_contenido,n.numero_decreto, n.objeto, n.aprobado_ley, n.vigencia) AS nota, d.terminoPropuesto, CONCAT_WS(' ', u.carpeta, u.folio) AS ubicacion, d.archivoAdjunto, d.responsable 
     FROM documento d 
     INNER JOIN descripfisica f 
@@ -182,6 +226,104 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_documentos` ()  BEGIN
     INNER JOIN entidad e
     ON m.entidad_id = e.id
     WHERE d.status = 1;
+        END$$
+
+CREATE PROCEDURE `sp_update_archivo` (`_id` INT, `_archivo` VARCHAR(255))  BEGIN
+        	DECLARE existe_documento INT;
+        	DECLARE response INT;
+            SET existe_documento = (SELECT COUNT(id) FROM documento WHERE id=_id AND status = 1 LIMIT 1);
+            
+            IF existe_documento > 0 THEN
+            	UPDATE documento SET archivoAdjunto=_archivo WHERE id=_id;
+                SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_update_autor` (`_id` INT, `_nombre` VARCHAR(60), `_apellido` VARCHAR(60))  BEGIN
+        	DECLARE existe_autor INT;
+        	DECLARE response INT;
+            SET existe_autor = (SELECT COUNT(id) FROM autor WHERE id=_id LIMIT 1);
+            
+            IF existe_autor > 0 THEN
+            	UPDATE autor SET nombre=_nombre,apellido=_apellido WHERE id=_id;
+                SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_update_descripFisica` (`_id` INT, `_numPag` VARCHAR(10), `_numHojas` VARCHAR(10), `_formato` VARCHAR(10), `_otros` VARCHAR(80))  BEGIN
+        	DECLARE existe_descripFisica INT;
+        	DECLARE response INT;
+            SET existe_descripFisica = (SELECT COUNT(id) FROM descripfisica WHERE id=_id LIMIT 1);
+            
+            IF existe_descripFisica > 0 THEN
+            	UPDATE descripfisica SET numPag=_numPag,numHojas=_numHojas,formato=_formato,otros=_otros WHERE id=_id;
+                SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_update_documento` (IN `_id` INT, IN `_titulo` VARCHAR(255), IN `_expediente` VARCHAR(100), IN `_fechaSuscripcion` VARCHAR(60), IN `_terminoPropuesto` VARCHAR(200), IN `_responsable` VARCHAR(150))  BEGIN
+        	DECLARE existe_documento INT;
+        	DECLARE response INT;
+            SET existe_documento = (SELECT COUNT(id) FROM documento WHERE id=_id AND status = 1 LIMIT 1);
+            
+            IF existe_documento > 0 THEN
+            	UPDATE documento SET titulo=_titulo,expediente=_expediente,fechaSuscripcion=_fechaSuscripcion,terminoPropuesto=_terminoPropuesto,responsable=_responsable WHERE id=_id;
+                SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_update_entidad` (`_id` INT, `_nombre` VARCHAR(60))  BEGIN
+        	DECLARE existe_entidad INT;
+        	DECLARE response INT;
+            SET existe_entidad = (SELECT COUNT(id) FROM entidad WHERE id=_id LIMIT 1);
+            
+            IF existe_entidad > 0 THEN
+            	UPDATE entidad SET nombre=_nombre WHERE id=_id;
+                SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_update_notas` (`_id` INT, `_objeto` VARCHAR(150), `_docVinculado` VARCHAR(150), `_notaContenido` VARCHAR(150), `_lugarRedaccion` VARCHAR(150), `_natuAlcanceForma` VARCHAR(150), `_vigencia` VARCHAR(50), `_numDecreto` VARCHAR(50), `_aprobadoLey` VARCHAR(50))  BEGIN
+        	DECLARE existe_nota INT;
+        	DECLARE response INT;
+            SET existe_nota = (SELECT COUNT(id) FROM notas WHERE id=_id LIMIT 1);
+            
+            IF existe_nota > 0 THEN
+            	UPDATE notas SET objeto=_objeto,doc_vinculado=_docVinculado,nota_contenido=_notaContenido,lugar_redaccion=_lugarRedaccion,naturaleza_alcance_forma=_natuAlcanceForma,vigencia=_vigencia,numero_decreto=_numDecreto,aprobado_ley=_aprobadoLey WHERE id=_id;
+                SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
+        END$$
+
+CREATE PROCEDURE `sp_update_ubicacion` (`_id` INT, `_carpeta` VARCHAR(20), `_folio` VARCHAR(20))  BEGIN
+        	DECLARE existe_ubicacion INT;
+        	DECLARE response INT;
+            SET existe_ubicacion = (SELECT COUNT(id) FROM ubicacion WHERE id=_id LIMIT 1);
+            
+            IF existe_ubicacion > 0 THEN
+            	UPDATE ubicacion SET carpeta=_carpeta,folio=_folio WHERE id=_id;
+                SET response = 1;
+            ELSE
+            	SET response = 0;
+            END IF;
+            SELECT response;
         END$$
 
 DELIMITER ;
@@ -217,7 +359,13 @@ INSERT INTO `autor` (`id`, `nombre`, `apellido`) VALUES
 (50, 'adasda', 'asda'),
 (51, 'adasda', 'asda'),
 (52, 'adasda', 'asda'),
-(53, 'hola', 'asda');
+(53, 'hola', 'asda'),
+(54, 'nombreAutor', 'ApellidoAutor'),
+(55, 'nombreAutor', 'ApellidoAutor'),
+(56, 'nombreAutor', 'ApellidoAutor'),
+(57, 'nombreautor', 'apellidoautor'),
+(58, 'Theautor', 'TheapellidoAutor'),
+(59, 'adsasdas', 'asdasda');
 
 -- --------------------------------------------------------
 
@@ -252,7 +400,10 @@ INSERT INTO `descripfisica` (`id`, `numPag`, `numHojas`, `formato`, `otros`) VAL
 (44, '4', '4', 'Oficio', '2 ejemplares'),
 (45, '4', '4', 'Oficio', '2 ejemplares'),
 (46, '4', '4', 'Oficio', '2 ejemplares'),
-(47, '8', '3', 'A4', '8 ejemplares');
+(47, '8', '3', 'A4', '8 ejemplares'),
+(48, '111', '1111', 'formato', 'otros'),
+(49, '324', '2342', 'The format', 'The otros'),
+(50, '2543', '25523', 'asdas', 'asdasdas');
 
 -- --------------------------------------------------------
 
@@ -262,16 +413,16 @@ INSERT INTO `descripfisica` (`id`, `numPag`, `numHojas`, `formato`, `otros`) VAL
 
 CREATE TABLE `documento` (
   `id` int(11) NOT NULL,
-  `titulo` varchar(300) NOT NULL,
-  `expediente` varchar(200) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `expediente` varchar(100) NOT NULL,
   `mencionResponsabilidad_id` int(11) NOT NULL,
-  `fechaSuscripcion` varchar(100) NOT NULL,
+  `fechaSuscripcion` varchar(60) NOT NULL,
   `descripfisica_id` int(11) NOT NULL,
   `notas_id` int(11) NOT NULL,
   `terminoPropuesto` varchar(200) NOT NULL,
   `ubicacion_id` int(11) NOT NULL,
   `responsable` varchar(150) NOT NULL,
-  `archivoAdjunto` varchar(1000) NOT NULL,
+  `archivoAdjunto` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -289,12 +440,15 @@ INSERT INTO `documento` (`id`, `titulo`, `expediente`, `mencionResponsabilidad_i
 (33, 'asdasdas', 'dsasda', 35, '2022-11-23', 39, 36, 'asdas', 38, 'adasda', 'NodeJs.jpg', 1),
 (34, 'dasdasdas', 'adsasdasd', 36, '2022-12-13', 40, 37, 'adasdas', 39, 'adasdas', 'C++.jpg', 1),
 (35, 'dasdsadas', 'adsada', 37, '2022-10-18', 41, 38, 'adsa', 40, 'adasdas', 'Swift.jpg', 1),
-(36, 'aaaaaaaaaaaaaaa', 'asdada', 38, '2022-10-08', 42, 39, 'bdbfd', 41, 'adasdasbdddd', 'VisualBasic.jpg', 0),
+(36, 'aaaaaaaaaaaaaaa', 'asdada', 38, '2022-10-08', 42, 39, 'bdbfd', 41, 'adasdasbdddd', 'VisualBasic.jpg', 1),
 (37, 'eeeeeeeeeeee', 'eeeeeeeeeeeeee', 39, '2022-08-30', 43, 40, 'fghfgh', 42, 'fhghg', 'SQL.png', 1),
-(38, 'dadasd', 'asdasd', 40, '2022-08-16', 44, 41, 'asdasda', 43, 'asdasda', 'PostgreSQL.png', 0),
+(38, 'dadasd', 'asdasd', 40, '2022-08-16', 44, 41, 'asdasda', 43, 'asdasda', 'PostgreSQL.png', 1),
 (39, 'Ejemplo 3', 'Ejemplo', 41, '2022-09-20', 45, 42, 'adasda', 44, 'adaaaa', 'HTML5.png', 1),
 (40, 'Ejemplo 4', 'Ejem 4', 42, '2022-12-19', 46, 43, 'adadadaaa', 45, 'adaaaaaa', 'ReactNative.jpg', 1),
-(41, 'Loco lope', 'EXP53000', 43, '2022-08-19', 47, 44, 'adasda', 46, 'asdada', 'Objective-C.png', 1);
+(41, 'Loco lope', 'EXP53000', 43, '2022-08-19', 47, 44, 'adasda', 46, 'asdada', 'Objective-C.png', 1),
+(42, 'titulo', 'expediente', 47, '2023-04-07', 48, 46, 'termino propuesto', 48, 'responsable', '1680662408_modelo_de_cv.pdf', 1),
+(43, 'The titulo', 'The expdiente', 48, '2023-04-21', 49, 47, 'The termino propuesto', 49, 'THe responsable', '1680662628_modelo_de_cv.pdf', 1),
+(44, 'dassadsa', 'adsasd', 49, '2023-04-10', 50, 48, 'asdsadas', 50, 'adsadas', '1680735564_modelo_de_cv.pdf', 1);
 
 -- --------------------------------------------------------
 
@@ -326,7 +480,13 @@ INSERT INTO `entidad` (`id`, `nombre`) VALUES
 (49, 'San Juan. Ministerio de Educación'),
 (50, 'San Juan. Ministerio de Educación'),
 (51, 'San Juan. Ministerio de Educación'),
-(52, 'San Juan. Ministerio de Educación');
+(52, 'San Juan. Ministerio de Educación'),
+(53, 'Entidad'),
+(54, 'Entidad'),
+(55, 'Entidad'),
+(56, 'entidad'),
+(57, 'The Entidad'),
+(58, 'adsdad');
 
 -- --------------------------------------------------------
 
@@ -359,7 +519,13 @@ INSERT INTO `mencionresponsabilidad` (`id`, `autor_id`, `entidad_id`) VALUES
 (40, 50, 49),
 (41, 51, 50),
 (42, 52, 51),
-(43, 53, 52);
+(43, 53, 52),
+(44, 54, 53),
+(45, 55, 54),
+(46, 56, 55),
+(47, 57, 56),
+(48, 58, 57),
+(49, 59, 58);
 
 -- --------------------------------------------------------
 
@@ -374,9 +540,9 @@ CREATE TABLE `notas` (
   `nota_contenido` varchar(150) NOT NULL,
   `lugar_redaccion` varchar(150) NOT NULL,
   `naturaleza_alcance_forma` varchar(150) NOT NULL,
-  `vigencia` varchar(150) NOT NULL,
-  `numero_decreto` varchar(150) NOT NULL,
-  `aprobado_ley` varchar(150) NOT NULL
+  `vigencia` varchar(50) NOT NULL,
+  `numero_decreto` varchar(50) NOT NULL,
+  `aprobado_ley` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -398,7 +564,11 @@ INSERT INTO `notas` (`id`, `objeto`, `doc_vinculado`, `nota_contenido`, `lugar_r
 (41, 'asda', 'asda', 'ada', 'San Juan', 'adsasada', '2022-12-04', '131', '582'),
 (42, 'asda', 'asda', 'ada', 'San Juan', 'adsasada', '2022-12-04', '131', '582'),
 (43, 'asda', 'asda', 'ada', 'San Juan', 'adsasada', '2022-12-04', '131', '582'),
-(44, 'asda', 'asda', 'ada', 'San Juan', 'adsasada', '2022-12-04', '131', '582');
+(44, 'asda', 'asda', 'ada', 'San Juan', 'adsasada', '2022-12-04', '131', '582'),
+(45, 'Objeto', 'Docuemento vinculado', 'nota contenido', 'Lugar de redaccion', 'Nuturaleza alcance y forma', '2023-04-20', '4553', '54234'),
+(46, 'objeto', 'docuemento vinculado', 'Nota Contenido', 'Lugar de Redaccion', 'nuturaleza Alcance y Forma', '2023-04-27', '1111', '1111'),
+(47, 'The objeto', 'The doc vinculado', 'The nota contenido', 'The lugar de redaccion', 'The naturalez', '2023-04-25', '34645654', '325346'),
+(48, 'sadsa', 'asdsadas', 'asdsad', 'adsada', 'asdasda', '2023-04-18', '435435', '3443253');
 
 -- --------------------------------------------------------
 
@@ -431,7 +601,11 @@ INSERT INTO `ubicacion` (`id`, `carpeta`, `folio`) VALUES
 (43, 'C1', 'asdada'),
 (44, 'C1', 'asdada'),
 (45, 'C1', 'asdada'),
-(46, 'C1', 'asdada');
+(46, 'C1', 'asdada'),
+(47, '21432', '32423'),
+(48, '11111', '1111'),
+(49, 'The carpeta', 'The folio'),
+(50, 'asdad', 'asdsadas');
 
 --
 -- Índices para tablas volcadas
@@ -493,43 +667,43 @@ ALTER TABLE `ubicacion`
 -- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `descripfisica`
 --
 ALTER TABLE `descripfisica`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `entidad`
 --
 ALTER TABLE `entidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `mencionresponsabilidad`
 --
 ALTER TABLE `mencionresponsabilidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `notas`
 --
 ALTER TABLE `notas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Restricciones para tablas volcadas

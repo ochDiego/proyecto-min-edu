@@ -27,6 +27,16 @@
             return $response;
         }
 
+        public function getArchivo($id)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_archivo(?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->execute();
+            $response=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
         public function existeTitulo($titulo)
         {
             $sentencia=$this->db->prepare("CALL sp_existe_titulo(?)");
@@ -158,4 +168,132 @@
 
             return $response['response'];
         }
+
+        public function existeTituloUpdate($id,$titulo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_existe_titulo_update(?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$titulo);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
+        public function existeExpedienteUpdate($id,$expediente)
+        {
+            $sentencia=$this->db->prepare("CALL sp_existe_expediente_update(?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$expediente);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
+        public function existeFechaSuscripUpdate($id,$fechaSuscrip)
+        {
+            $sentencia=$this->db->prepare("CALL sp_existe_fechaSuscrip_update(?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$fechaSuscrip);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
+        public function updateAutor($id,$nombre,$apellido)
+        {
+            $sentencia=$this->db->prepare("CALL sp_update_autor(?,?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$nombre);
+            $sentencia->bindParam(3,$apellido);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+
+        }
+
+        public function updateDescripFisica($id,$numPag,$numHojas,$formato,$otros)
+        {
+            $sentencia=$this->db->prepare("CALL sp_update_descripFisica(?,?,?,?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$numPag);
+            $sentencia->bindParam(3,$numHojas);
+            $sentencia->bindParam(4,$formato);
+            $sentencia->bindParam(5,$otros);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
+        public function updateEntidad($id,$nombre)
+        {
+            $sentencia=$this->db->prepare("CALL sp_update_entidad(?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$nombre);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
+        public function updateNotas($id,$objeto,$docVinculado,$notaContenido,$lugarRedaccion,$natuAlcanceForma,$vigencia,$numDecreto,$aprobadoLey)
+        {
+            $sentencia=$this->db->prepare("CALL sp_update_notas(?,?,?,?,?,?,?,?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$objeto);
+            $sentencia->bindParam(3,$docVinculado);
+            $sentencia->bindParam(4,$notaContenido);
+            $sentencia->bindParam(5,$lugarRedaccion);
+            $sentencia->bindParam(6,$natuAlcanceForma);
+            $sentencia->bindParam(7,$vigencia);
+            $sentencia->bindParam(8,$numDecreto);
+            $sentencia->bindParam(9,$aprobadoLey);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
+        public function updateUbicacion($id,$carpeta,$folio)
+        {
+            $sentencia=$this->db->prepare("CALL sp_update_ubicacion(?,?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$carpeta);
+            $sentencia->bindParam(3,$folio);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
+        public function updateDocumento($id,$titulo,$expediente,$fechaSuscrip,$terminoPropuesto,$responsable)
+        {
+            $sentencia=$this->db->prepare("CALL sp_update_documento(?,?,?,?,?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(2,$titulo);
+            $sentencia->bindParam(3,$expediente);
+            $sentencia->bindParam(4,$fechaSuscrip);
+            $sentencia->bindParam(5,$terminoPropuesto);
+            $sentencia->bindParam(6,$responsable);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
+        public function updateArchivo($id,$archivo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_update_archivo(?,?)");
+            $sentencia->bindParam(1,$id);
+            $sentencia->bindParam(1,$archivo);
+            $sentencia->execute();
+            $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
+
+            return $resp['response'];
+        }
+
     }

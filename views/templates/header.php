@@ -18,7 +18,24 @@
 
 <body>
   <header>
-    <!-- place navbar here -->
+    </div>
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a href="#" class="navbar-brand">
+          <strong>Ministerio de Educación</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarHeader">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a href="index.php" class="nav-link active">Documentos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main class="container-fluid p-3">

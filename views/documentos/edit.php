@@ -51,6 +51,12 @@
                             <input type="hidden" name="id" value="<?= $data['id']; ?>">
                             <input type="hidden" name="token" value="<?= $data['token']; ?>">
 
+                            <input type="hidden" name="descripFisicaID" value="<?= $data['documento']['descripFisicaID']; ?>">
+                            <input type="hidden" name="notasID" value="<?= $data['documento']['notasID']; ?>">
+                            <input type="hidden" name="entidadID" value="<?= $data['documento']['entidadID']; ?>">
+                            <input type="hidden" name="autorID" value="<?= $data['documento']['autorID']; ?>">
+                            <input type="hidden" name="ubicacionID" value="<?= $data['documento']['ubicacionID']; ?>">
+
 
                             <div class="col-3">
                                 <div class="mb-3">
@@ -200,9 +206,9 @@
 
                             <div class="col-3">
                                 <div class="mb-3">
-                                  <label for="documento" class="form-label">Documento:</label>
+                                  <label for="archivo" class="form-label">Documento:</label>
                                   <a href="assets/archivos/<?= $data['documento']['archivoAdjunto']; ?>" target="_BLANK"><?= $data['documento']['archivoAdjunto']; ?></a>
-                                  <input type="file" name="documento" id="documento" class="form-control form-control-sm" placeholder="Adjunte el archivo" aria-describedby="helpId">
+                                  <input type="file" name="archivo" id="archivo" class="form-control form-control-sm" placeholder="Adjunte el archivo" aria-describedby="helpId">
                                 </div>
                             </div>
 

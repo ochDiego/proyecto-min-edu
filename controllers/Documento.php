@@ -138,7 +138,13 @@
         public function update()
         {
             $token=$_POST['token'];
-            $id=$_POST['id'];
+            $documentoID=$_POST['id'];
+
+            $notasID=$_POST['notasID'];
+            $entidadID=$_POST['entidadID'];
+            $ubicacionID=$_POST['ubicacionID'];
+            $descripFisicaID=$_POST['descripFisicaID'];
+            $autorID=$_POST['autorID'];
             
             $titulo=$_POST['titulo'];
             $expediente=$_POST['expediente'];
@@ -167,15 +173,74 @@
             $folio=$_POST['folio'];
             $responsable=$_POST['responsable'];
 
-            $documento=(isset($_FILES['documento']['name']))?$_FILES['documento']['name']:"";
+            $archivo=(isset($_FILES['archivo']['name']))?$_FILES['archivo']['name']:"";
 
             if(empty($titulo) || empty($expediente) || empty($nombreAutor) || empty($apellidoAutor) || empty($entidad) || empty($fechaSuscripcion) || empty($numPag) || empty($numHojas) || empty($otros) || empty($formato) || empty($objeto) || empty($docVinculado) || empty($notaContenido) || empty($lugarRedaccion) || empty($natuAlcanceForma) || empty($vigencia) || empty($numDecreto) || empty($aprobLey) || empty($carpeta) || empty($terminoPropuesto) || empty($folio) || empty($responsable)){
                 $_SESSION['msj']="Error: Todos los campos son requeridos";
                 $_SESSION['msj_type']="danger";
 
-                header("location:index.php?c=Documento&m=edit&id=$id&token=$token");
+                header("location:index.php?c=Documento&m=edit&id=$documentoID&token=$token");
             }else{
-                header("location:index.php");
+                if($this->documento->existeTituloUpdate($documentoID,$titulo)){
+                    $_SESSION['msj']="Error: El título ya existe, ingrese otro por favor";
+                    $_SESSION['msj_type']="danger";
+
+                    header("location:index.php?c=Documento&m=edit&id=$documentoID&token=$token");                  
+                }elseif($this->documento->existeExpedienteUpdate($documentoID,$expediente)){
+                    $_SESSION['msj']="Error: El expediente ya existe, ingrese otro por favor";
+                    $_SESSION['msj_type']="danger";
+
+                    header("location:index.php?c=Documento&m=edit&id=$documentoID&token=$token");
+                }elseif($this->documento->existeFechaSuscripUpdate($documentoID,$fechaSuscripcion)){
+                    $_SESSION['msj']="Error: La fecha de suscripción ya existe, ingrese otra por favor";
+                    $_SESSION['msj_type']="danger";
+
+                    header("location:index.php?c=Documento&m=edit&id=$documentoID&token=$token");
+                }else{
+                    $updateAutor=$this->documento->updateAutor($autorID,$nombreAutor,$apellidoAutor);
+                    if($updateAutor){
+                        $updateEntidad=$this->documento->updateEntidad($entidadID,$entidad);
+                        if($updateEntidad){
+                            $updateNotas=$this->documento->updateNotas($notasID,$objeto,$docVinculado,$notaContenido,$lugarRedaccion,$natuAlcanceForma,$vigencia,$numDecreto,$aprobLey);
+                            if($updateNotas){
+                                $updateUbicacion=$this->documento->updateUbicacion($ubicacionID,$carpeta,$folio);
+                                if($updateUbicacion){
+                                    $updateDescripFisica=$this->documento->updateDescripFisica($descripFisicaID,$numPag,$numHojas,$formato,$otros);
+                                    if($updateDescripFisica){
+                                        $updateDocumento=$this->documento->updateDocumento($documentoID,$titulo,$expediente,$fechaSuscripcion,$terminoPropuesto,$responsable);
+                                        if($updateDocumento){
+                                            $_SESSION['msj']="Documento actualizado con éxito!";
+
+                                            header("location:index.php");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if($archivo!=""){
+                        $fecha=new DateTime;
+                        $nombreArchivo=($archivo!="")?$fecha->getTimestamp()."_".$archivo:"";
+                        $tmpArchivo=$_FILES['archivo']['tmp_name'];
+                        move_uploaded_file($tmpArchivo,"assets/archivos/".$nombreArchivo);
+
+                        $archivoAdjunto=$this->documento->getArchivo($documentoID);
+                        
+                        if(isset($archivoAdjunto['archivoAdjunto']) && $archivoAdjunto['archivoAdjunto']!=""){
+                            if(file_exists("assets/archivos/".$archivoAdjunto['archivoAdjunto'])){
+                                unlink("assets/archivos/".$archivoAdjunto['archivoAdjunto']);
+                            }
+                        }
+
+                        $updateArchivo=$this->documento->updateArchivo($documentoID,$nombreArchivo);
+                        if($updateArchivo){
+                            $_SESSION['msj']="Documento actualizado con éxito!";
+
+                            header("location:index.php");
+                        }
+                    }
+                }
             }
         }
 

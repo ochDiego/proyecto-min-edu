@@ -276,4 +276,9 @@
                 require_once 'views/documentos/show.php';
             }
         }
+
+        public function login()
+        {
+            require_once 'views/documentos/login.php';
+        }
     }

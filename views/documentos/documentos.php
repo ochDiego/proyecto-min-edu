@@ -24,14 +24,14 @@
         <div class="row my-3">
             <div class="col-12">
                 <div class="table-responsive-sm">
-                    <table class="table table-striped table-bordered table-sm">
-                        <thead class="table-dark">
+                    <table class="table table-striped table-bordered shadow-lg table-sm" style="width:100%">
+                        <thead class="bg-dark text-white">
                             <tr>
                                 <th class="text-center" scope="col">Título</th>
                                 <th class="text-center" scope="col">Expte</th>
                                 <th class="text-center" scope="col">Término propuesto</th>
                                 <th class="text-center" scope="col">Ubicación</th>
-                                <th class="text-center" scope="col">Responsable</th>
+                                <th class="text-center" scope="col">Autor</th>
                                 <th class="text-center" scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -43,8 +43,11 @@
                                         <td class="text-center"><?= $documento['expediente']; ?></td>
                                         <td class="text-center"><?= $documento['terminoPropuesto']; ?></td>
                                         <td class="text-center"><?= $documento['ubicacion']; ?></td>
-                                        <td class="text-center"><?= $documento['responsable']; ?></td>
+                                        <td class="text-center"><?= $documento['autor']; ?></td>
                                         <td class="text-center">
+
+                                            <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver</a>
+
                                             <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>
                                             
                                             <!-- Button trigger modal -->
@@ -86,5 +89,5 @@
         </div>
 
 <?php require_once 'views/templates/footer.php'; ?>
-<script src="assets/js/dataTables.js"></script>
+<script src="js/dataTables.js"></script>
 

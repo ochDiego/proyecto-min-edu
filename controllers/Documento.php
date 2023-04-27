@@ -127,7 +127,7 @@
                 $data['id']=$id;
                 $data['token']=$token;
                 $data['documento']=$this->documento->getDocumento($id);
-                $data['titulo']="Actualizar registro";
+                $data['titulo']="Editar registro";
     
                 require_once 'views/documentos/edit.php';
 
@@ -262,5 +262,18 @@
 
             }
 
+        }
+
+        public function show($id=null,$token=null)
+        {
+            $tmpToken=hash_hmac('sha1',$id,KEY_TOKEN);
+
+            if($tmpToken!=$token){
+                header("location:index.php");
+            }else{
+                $data['documento']=$this->documento->getDocumento($id);
+
+                require_once 'views/documentos/show.php';
+            }
         }
     }

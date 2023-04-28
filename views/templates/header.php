@@ -11,6 +11,7 @@
     <title>Ministerio de Educación</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/boxicons.min.css">
 
     <!-- Bootstrap CSS v5.2.1 and dataTables -->
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">

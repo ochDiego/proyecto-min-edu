@@ -48,11 +48,12 @@
 
                                             <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver</a>
 
+                                        <?php if(isset($_SESSION['usuario'])): ?>
                                             <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>
                                             
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmarModal<?= $documento['idDocumento']; ?>">Eliminar</a>
-
+                                        <?php endif ?>
                                             <!-- Modal -->
                                             <div class="modal fade" id="confirmarModal<?= $documento['idDocumento']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">

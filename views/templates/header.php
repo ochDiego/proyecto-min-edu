@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -33,11 +34,21 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">Administrador</a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="index.php?c=Documento&m=login">Iniciar sesión</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
+                    
+                    <?php if(!isset($_SESSION['usuario'])):?>
+                        <li>
+                            <a class="dropdown-item" href="index.php?c=Documento&m=login">Iniciar sesión</a></li>
+                        <li>
+                    <?php endif ?>
+
+                    
+
                     </li>
-                    <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
+                    <?php if(isset($_SESSION['usuario'])): ?>
+                        <li>
+                            <a class="dropdown-item" href="index.php?c=Documento&m=cerrar">Cerrar sesión</a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </li>
         </ul>

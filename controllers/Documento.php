@@ -281,4 +281,31 @@
         {
             require_once 'views/documentos/login.php';
         }
+
+        public function procesarLogin()
+        {
+            $usuario=$_POST['usuario'];
+            $password=$_POST['password'];
+
+            if(empty($usuario) || empty($password)){
+                $_SESSION['msj']="Ingrese un usuario y contraseña";
+
+                header("location:index.php?c=Documento&m=login");
+            }else{
+                if($usuario!="administrador" || $password!="administrador"){
+                    $_SESSION['msj']="Usuario o contraseña incorrectos";
+
+                    header("location:index.php?c=Documento&m=login");
+                }else{
+                    $_SESSION['usuario']=$usuario;
+
+                    header("location:index.php");
+                }
+            }
+        }
+
+        public function cerrar()
+        {
+            require_once 'views/documentos/cerrar.php';
+        }
     }

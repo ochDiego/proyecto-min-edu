@@ -30,6 +30,7 @@
                                 <th class="text-center" scope="col">Título</th>
                                 <th class="text-center" scope="col">Expte</th>
                                 <th class="text-center" scope="col">Término propuesto</th>
+                                <th class="text-center" scope="col">Fecha de suscripción</th>
                                 <th class="text-center" scope="col">Ubicación</th>
                                 <th class="text-center" scope="col">Autor</th>
                                 <th class="text-center" scope="col">Acciones</th>
@@ -39,14 +40,17 @@
                             <?php if(count($data['documentos']) > 0){ ?>
                                 <?php foreach($data['documentos'] as $documento): ?>
                                     <tr class="">
-                                        <td class="text-center" scope="row"><?= $documento['titulo']; ?></td>
-                                        <td class="text-center"><?= $documento['expediente']; ?></td>
-                                        <td class="text-center"><?= $documento['terminoPropuesto']; ?></td>
-                                        <td class="text-center"><?= $documento['ubicacion']; ?></td>
-                                        <td class="text-center"><?= $documento['autor']; ?></td>
+                                        <td class="text-center" scope="row"><small><?= $documento['titulo']; ?></small></td>
+                                        <td class="text-center"><small><?= $documento['expediente']; ?></small></td>
+                                        <td class="text-center"><small><?= $documento['terminoPropuesto']; ?></small></td>
+                                        <td class="text-center"><small><?= modificarFecha($documento['fechaSuscripcion']); ?></small></td>
+                                        <td class="text-center"><small><?= $documento['ubicacion']; ?></small></td>
+                                        <td class="text-center"><small><?= $documento['autor']; ?></small></td>
                                         <td class="text-center">
 
-                                            <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver</a>
+                                            <a name="" id="" class="btn btn-outline-primary btn-sm" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver más</a>
+
+                                            <a name="" id="" class="btn btn-outline-danger btn-sm px-4" href="assets/archivos/<?= $documento['archivoAdjunto']; ?>" target="_BLANK" role="button">pdf</a>
 
                                         <?php if(isset($_SESSION['usuario'])): ?>
                                             <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>
@@ -54,6 +58,7 @@
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmarModal<?= $documento['idDocumento']; ?>">Eliminar</a>
                                         <?php endif ?>
+
                                             <!-- Modal -->
                                             <div class="modal fade" id="confirmarModal<?= $documento['idDocumento']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -79,7 +84,7 @@
                                 <?php endforeach ?>
                             <?php }else{ ?>
                                     <tr>
-                                        <td colspan="6" class="text-center">No hay datos actualmente</td>
+                                        <td colspan="7" class="text-center">No hay datos actualmente</td>
                                     </tr>
                             <?php } ?>
                         </tbody>

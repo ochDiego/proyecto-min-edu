@@ -272,6 +272,7 @@
                 header("location:index.php");
             }else{
                 $data['documento']=$this->documento->getDocumento($id);
+                $data['id']=$id;
 
                 require_once 'views/documentos/show.php';
             }

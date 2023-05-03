@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-04-2023 a las 16:39:59
+-- Tiempo de generación: 03-05-2023 a las 23:15:34
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -365,7 +365,14 @@ INSERT INTO `autor` (`id`, `nombre`, `apellido`) VALUES
 (56, 'nombreAutor', 'ApellidoAutor'),
 (57, 'nombreautor', 'apellidoautor'),
 (58, 'Theautor', 'TheapellidoAutor'),
-(59, 'adsasdas', 'asdasda');
+(59, 'adsasdas', 'asdasda'),
+(60, 'libero', 'libero'),
+(61, 'corporis', 'eveniet'),
+(62, 'ntium', 'tempore'),
+(63, 'arc', 'sed'),
+(64, 'consectetur', 'dolores'),
+(65, 'Nostrum', 'adip'),
+(66, 'pellat', 'eius');
 
 -- --------------------------------------------------------
 
@@ -403,7 +410,14 @@ INSERT INTO `descripfisica` (`id`, `numPag`, `numHojas`, `formato`, `otros`) VAL
 (47, '8', '3', 'A4', '8 ejemplares'),
 (48, '111', '1111', 'formato', 'otros'),
 (49, '324', '2342', 'The format', 'The otros'),
-(50, '2543', '25523', 'asdas', 'asdasdas');
+(50, '2543', '25523', 'asdas', 'asdasdas'),
+(51, '43', '22', 'libero par', 'quibusdam optio autem nisi aliquam'),
+(52, '345', '345', 'Fuga quos', 'necessitatibus error voluptatum ad ullam sint'),
+(53, '24', '56', 'officiis n', 'dignissimos ad adipisci voluptatum corporis'),
+(54, '435', '644', 'stiae arc', 'sit iste molestiae aliquam omnis explicabo'),
+(55, '56', '546', 'consectetu', 't amet consectetur adipisicing elit. Unde aut recusandae vo'),
+(56, '43', '324', 'Fuga quos', 'olorem, molestiae architecto hic temporibus eaque vitae'),
+(57, '424', '46', 'perferendi', 'Corrupti nobis, eum hic pariatur iste perferendis consequuntur');
 
 -- --------------------------------------------------------
 
@@ -431,24 +445,13 @@ CREATE TABLE `documento` (
 --
 
 INSERT INTO `documento` (`id`, `titulo`, `expediente`, `mencionResponsabilidad_id`, `fechaSuscripcion`, `descripfisica_id`, `notas_id`, `terminoPropuesto`, `ubicacion_id`, `responsable`, `archivoAdjunto`, `status`) VALUES
-(27, 'River Plate', 'dsasdas', 29, '2022-12-15', 33, 30, 'asdada', 32, 'asdadas', 'Certificado_trato_digno_personas_mayores.pdf', 1),
-(28, 'Carola', 'asdsadasda', 30, '2022-12-12', 34, 31, 'adasdsa', 33, 'asdada', 'Certificado_de_programacion_web.pdf', 1),
-(29, 'diego', 'adsasdas', 31, '2022-12-16', 35, 32, 'adasdas', 34, 'asdasdas', 'Certificado_de_cyberseguridad.pdf', 1),
-(30, 'adssada', 'asdsad', 32, '2022-12-20', 36, 33, 'adasda', 35, 'adsadas', 'Java.jpg', 1),
-(31, 'dadasads', 'asdasdasda', 33, '2022-12-24', 37, 34, 'adasdaasda', 36, 'adsadasasda', 'Angular.jpg', 1),
-(32, 'asdasdasda', 'asdasdasd', 34, '2022-12-11', 38, 35, 'asdad', 37, 'asdada', 'html_css.jpg', 1),
-(33, 'asdasdas', 'dsasda', 35, '2022-11-23', 39, 36, 'asdas', 38, 'adasda', 'NodeJs.jpg', 1),
-(34, 'dasdasdas', 'adsasdasd', 36, '2022-12-13', 40, 37, 'adasdas', 39, 'adasdas', 'C++.jpg', 1),
-(35, 'dasdsadas', 'adsada', 37, '2022-10-18', 41, 38, 'adsa', 40, 'adasdas', 'Swift.jpg', 1),
-(36, 'aaaaaaaaaaaaaaa', 'asdada', 38, '2022-10-08', 42, 39, 'bdbfd', 41, 'adasdasbdddd', 'VisualBasic.jpg', 1),
-(37, 'eeeeeeeeeeee', 'eeeeeeeeeeeeee', 39, '2022-08-30', 43, 40, 'fghfgh', 42, 'fhghg', 'SQL.png', 1),
-(38, 'dadasd', 'asdasd', 40, '2022-08-16', 44, 41, 'asdasda', 43, 'asdasda', 'PostgreSQL.png', 1),
-(39, 'Ejemplo 3', 'Ejemplo', 41, '2022-09-20', 45, 42, 'adasda', 44, 'adaaaa', 'HTML5.png', 1),
-(40, 'Ejemplo 4', 'Ejem 4', 42, '2022-12-19', 46, 43, 'adadadaaa', 45, 'adaaaaaa', 'ReactNative.jpg', 1),
-(41, 'Loco lope', 'EXP53000', 43, '2022-08-19', 47, 44, 'adasda', 46, 'asdada', 'Objective-C.png', 1),
-(42, 'titulo', 'expediente', 47, '2023-04-07', 48, 46, 'termino propuesto', 48, 'responsable', '1680662408_modelo_de_cv.pdf', 1),
-(43, 'The titulo', 'The expdiente', 48, '2023-04-21', 49, 47, 'The termino propuesto', 49, 'THe responsable', '1680662628_modelo_de_cv.pdf', 1),
-(44, 'dassadsa', 'adsasd', 49, '2023-04-10', 50, 48, 'asdsadas', 50, 'adsadas', '1680735564_modelo_de_cv.pdf', 1);
+(1, '. Fuga quos et quod numquam quia praesentium', 'libero pariatur soluta, corrupti repudiandae quis expedi', 50, '2023-05-13', 51, 49, '. Fuga quos et quod nu', 51, '. Fuga quos et quod numquam quia praesentium', '1683147330_example.pdf', 1),
+(2, 'Fuga quos et quod numquam quia praesentium i', 'Fuga quos et quod numquam quia praesentium i', 51, '2023-05-21', 52, 50, 'eveniet illum sed cor', 52, 'necessitatibus error voluptatum ad ullam sint', '1683147425_example.pdf', 1),
+(3, 'dignissimos ad adipisci voluptatum corporis', 'officiis natus! Qui, perspiciat', 52, '2023-04-07', 53, 51, 'dignissimos ad adipisc', 53, 'dignissimos ad adipisci voluptatum corporis', '1683147517_example.pdf', 1),
+(4, 'sit iste molestiae aliquam omnis explicabo', 'l debitis? Impedit labore accusantium,', 53, '2023-03-15', 54, 52, 'sed corporis nostrum', 54, 'sit iste molestiae aliquam omnis explicabo', '1683147615_example.pdf', 1),
+(5, 't amet consectetur adipisicing elit. Unde aut recusandae vo', 'consectetur libero pariatur dolor ipsam dolores a', 54, '2023-01-16', 55, 53, 'consectetur libero par', 55, 't amet consectetur adipisicing elit', '1683147722_example.pdf', 1),
+(6, 'olorem, molestiae architecto hic temporibus eaque vitae', 'Nostrum dolorum dignissimos ad adip', 55, '2023-03-20', 56, 54, 'Fuga quos et quod numq', 56, 'olorem, molestiae architecto hic temporibus eaque vitae', '1683147812_example.pdf', 1),
+(7, 'perferendis veniam eius maiores facilis', 'Corrupti nobis, eum hic pariatur iste perferendis consequuntur', 56, '2023-03-25', 57, 55, 'Facilis cum eveniet, v', 57, 'Facilis cum eveniet,', '1683147933_example.pdf', 1);
 
 -- --------------------------------------------------------
 
@@ -486,7 +489,14 @@ INSERT INTO `entidad` (`id`, `nombre`) VALUES
 (55, 'Entidad'),
 (56, 'entidad'),
 (57, 'The Entidad'),
-(58, 'adsdad');
+(58, 'adsdad'),
+(59, 'libero pariatur soluta, corrupti repudiandae quis'),
+(60, 'necessitatibus error voluptatum ad ullam sint'),
+(61, 'dignissimos ad adipisci voluptatum corporis'),
+(62, 'sed corporis nostrum deserunt itaque atque id dol'),
+(63, 'consectetur libero pariatur dolor ipsam dolores a'),
+(64, 'Nostrum dolorum dignissimos ad adip'),
+(65, 'Corrupti nobis, eum hic pariatur iste perferendis');
 
 -- --------------------------------------------------------
 
@@ -525,7 +535,14 @@ INSERT INTO `mencionresponsabilidad` (`id`, `autor_id`, `entidad_id`) VALUES
 (46, 56, 55),
 (47, 57, 56),
 (48, 58, 57),
-(49, 59, 58);
+(49, 59, 58),
+(50, 60, 59),
+(51, 61, 60),
+(52, 62, 61),
+(53, 63, 62),
+(54, 64, 63),
+(55, 65, 64),
+(56, 66, 65);
 
 -- --------------------------------------------------------
 
@@ -568,7 +585,14 @@ INSERT INTO `notas` (`id`, `objeto`, `doc_vinculado`, `nota_contenido`, `lugar_r
 (45, 'Objeto', 'Docuemento vinculado', 'nota contenido', 'Lugar de redaccion', 'Nuturaleza alcance y forma', '2023-04-20', '4553', '54234'),
 (46, 'objeto', 'docuemento vinculado', 'Nota Contenido', 'Lugar de Redaccion', 'nuturaleza Alcance y Forma', '2023-04-27', '1111', '1111'),
 (47, 'The objeto', 'The doc vinculado', 'The nota contenido', 'The lugar de redaccion', 'The naturalez', '2023-04-25', '34645654', '325346'),
-(48, 'sadsa', 'asdsadas', 'asdsad', 'adsada', 'asdasda', '2023-04-18', '435435', '3443253');
+(48, 'sadsa', 'asdsadas', 'asdsad', 'adsada', 'asdasda', '2023-04-18', '435435', '3443253'),
+(49, 'quibusdam optio autem nisi aliquam', '. Fuga quos et quod numquam quia praesentium', 'quibusdam optio autem nisi aliquam', 'quibusdam optio autem nisi aliquam', 'libero pariatur soluta, corrupti repudiandae quis expedi', '2023-05-23', '4654645', '3464'),
+(50, 'eveniet illum sed corporis no', 'Fuga quos m quia praesentium i', 'Fuga quos et quod numi', 'Fuga quos et quod numquam quia praesentium i', 'necessitatibus error voluptatum ad ullam sint', '2023-06-10', '45654', '36547'),
+(51, 'officiis natus! Qui, perspiciat', 'ntium, maxime quos ut sed aliquam similique molestiae voluptatibus tempore', 'officiis natus! Qui, perspiciat', 'dignissimos ad adipisci voluptatum corporis', 'officiis natus! Qui, perspiciat', '2023-06-07', '634654', '5464'),
+(52, 'sit iste molestiae aliquam omnis explicabo', ',  sed corporis nostrum deserunt itaque atque id dolorem, molestiae arc', 'l debitis? Impedit labore accusantium,', 'sit iste molestiae aliquam omnis explicabo', 'sit iste molestiae aliquam omnis explicabo', '2023-05-22', '4354', '464'),
+(53, 'consectetur libero pariatur dolor ipsam dolores a', 't amet consectetur adipisicing elit. Unde aut recusandae vo', 'consectetur libero pariatur dolor ipsam dolores a', 'consectetur libero pariatur dolor ipsam dolores a', 't amet consectetur adipisicing elit. Unde aut recusandae vo', '2023-03-17', '4654', '45457'),
+(54, 'Fuga quos et quod numquam quia praesentium impedit quae adipisci', 'Nostrum dolorum dignissimos ad adip', 'Fuga quos et quod numquam quia praesentium impedit quae adipisci', 'Fuga quos et quod numquam quia praesentium impedit quae adipisci', 'olorem, molestiae architecto hic temporibus eaque vitae', '2023-06-04', '878678', '45645'),
+(55, 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'perferendis veniam eius maiores facilis', 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'Facilis cum eveniet, vero doloremque', '2023-05-01', '57665', '4575');
 
 -- --------------------------------------------------------
 
@@ -605,7 +629,14 @@ INSERT INTO `ubicacion` (`id`, `carpeta`, `folio`) VALUES
 (47, '21432', '32423'),
 (48, '11111', '1111'),
 (49, 'The carpeta', 'The folio'),
-(50, 'asdad', 'asdsadas');
+(50, 'asdad', 'asdsadas'),
+(51, '4', '3'),
+(52, '34', '543'),
+(53, 'Qui, perspiciat', 'perspiciat'),
+(54, 'molestiae', 'sed corporis nostru'),
+(55, 'res a', 'libero pariatur dolo'),
+(56, 'gnissimos ad adip', 'Nostrum dolo'),
+(57, 'Facilis cum eveniet,', 'vero doloremque');
 
 --
 -- Índices para tablas volcadas
@@ -667,43 +698,43 @@ ALTER TABLE `ubicacion`
 -- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `descripfisica`
 --
 ALTER TABLE `descripfisica`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `entidad`
 --
 ALTER TABLE `entidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `mencionresponsabilidad`
 --
 ALTER TABLE `mencionresponsabilidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `notas`
 --
 ALTER TABLE `notas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- Restricciones para tablas volcadas

@@ -75,6 +75,7 @@
                 }elseif($this->documento->existeFechaSuscrip($fechaSuscripcion)){
                     $_SESSION['msj']="Error: La fecha de suscripción ya existe, ingrese otra por favor";
                     $_SESSION['msj_type']="danger";
+                    
 
                     header("location:index.php?c=Documento&m=create");
                 }else{
@@ -103,8 +104,10 @@
 
                                             if($idDocumento){
                                                 $_SESSION['msj']="Documento registrado con éxito";
+
+                                                $token=hash_hmac('sha1',$idDocumento,KEY_TOKEN);
                                                 
-                                                header("location:index.php");
+                                                header("location:index.php?c=Documento&m=show&id=$idDocumento&token=$token");
                                             }
                                         }
                                     }
@@ -211,7 +214,9 @@
                                         if($updateDocumento){
                                             $_SESSION['msj']="Documento actualizado con éxito!";
 
-                                            header("location:index.php");
+                                                $token=hash_hmac('sha1',$documentoID,KEY_TOKEN);
+                                                
+                                                header("location:index.php?c=Documento&m=show&id=$documentoID&token=$token");
                                         }
                                     }
                                 }
@@ -237,7 +242,9 @@
                         if($updateArchivo){
                             $_SESSION['msj']="Documento actualizado con éxito!";
 
-                            header("location:index.php");
+                            $token=hash_hmac('sha1',$documentoID,KEY_TOKEN);
+                                                
+                            header("location:index.php?c=Documento&m=show&id=$documentoID&token=$token");
                         }
                     }
                 }
@@ -256,6 +263,7 @@
     
                 if($delDocumento){
                     $_SESSION['msj']="Documento eliminado con éxito!";
+                    $_SESSION['usuario']="Administrador";
     
                     header("location:index.php");
                 }
@@ -293,12 +301,12 @@
 
                 header("location:index.php?c=Documento&m=login");
             }else{
-                if($usuario!="administrador" || $password!="administrador"){
+                if($usuario!="Administrador" || $password!="administrador"){
                     $_SESSION['msj']="Usuario o contraseña incorrectos";
 
                     header("location:index.php?c=Documento&m=login");
                 }else{
-                    $_SESSION['usuario']=$usuario;
+                    $_SESSION['usuario']="Administrador";
 
                     header("location:index.php");
                 }
@@ -310,3 +318,5 @@
             require_once 'views/documentos/cerrar.php';
         }
     }
+
+    

@@ -20,6 +20,14 @@
     <script src="js/sweetalert2@11.js"></script>
 
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        *,
+        *::after,
+        *::before{
+            font-family: monospace;
+            font-size: 13px;
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -33,15 +41,15 @@
         <ul class="navbar-nav ms-auto ms-auto me-0 me-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
 
-            <?php if(isset($_SESSION['usuario'])):?>
+            <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"):?>
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">Administrador</a>
-            <?php endif?>
+            <?php else: ?>
 
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">Acceso</a>
 
-
+            <?php endif ?>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     
                     <?php if(!isset($_SESSION['usuario'])):?>

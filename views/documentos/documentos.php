@@ -17,7 +17,9 @@
             <div class="col-12">
                 <h2 class="text-center lead"><?= $data['titulo'] ?></h2>
 
-                <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=create" role="button">Nuevo registro</a>
+                <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"):?>
+                        <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=create" role="button">Nuevo registro</a>
+                <?php endif ?>
             </div>
         </div>
 
@@ -52,7 +54,7 @@
 
                                             <a name="" id="" class="btn btn-outline-danger btn-sm px-4" href="assets/archivos/<?= $documento['archivoAdjunto']; ?>" target="_BLANK" role="button">pdf</a>
 
-                                        <?php if(isset($_SESSION['usuario'])): ?>
+                                        <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"): ?>
                                             <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>
                                             
                                             <!-- Button trigger modal -->
@@ -96,4 +98,5 @@
 
 <?php require_once 'views/templates/footer.php'; ?>
 <script src="js/dataTables.js"></script>
+
 

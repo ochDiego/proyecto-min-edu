@@ -2,7 +2,7 @@
 
         <div class="row my-3">
             <div class="col-12">
-                <h2 class="text-center lead"><?= $data['titulo']; ?></h2>
+                <h2 class="text-center lead fs-1"><?= $data['titulo']; ?></h2>
 
                 <a name="" id="" class="btn btn-primary btn-sm" href="index.php" role="button">Lista de documentos</a>
             </div>

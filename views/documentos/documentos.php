@@ -29,30 +29,30 @@
                     <table class="table table-striped table-bordered shadow-lg table-sm" style="width:100%">
                         <thead class="bg-dark text-white">
                             <tr>
-                                <th class="text-center" scope="col">Título</th>
-                                <th class="text-center" scope="col">Expte</th>
-                                <th class="text-center" scope="col">Término propuesto</th>
-                                <th class="text-center" scope="col">Fecha de suscripción</th>
-                                <th class="text-center" scope="col">Ubicación</th>
-                                <th class="text-center" scope="col">Autor</th>
-                                <th class="text-center" scope="col">Acciones</th>
+                                <th class="text-center align-middle" scope="col">Título</th>
+                                <th class="text-center align-middle" scope="col">Expte</th>
+                                <th class="text-center align-middle" scope="col">Término propuesto</th>
+                                <th class="text-center align-middle" scope="col">Fecha de suscripción</th>
+                                <!-- <th class="text-center align-middle" scope="col">Ubicación</th> -->
+                                <th class="text-center align-middle" scope="col">Autor</th>
+                                <th class="text-center align-middle" scope="col" style="width: 100;">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if(count($data['documentos']) > 0){ ?>
                                 <?php foreach($data['documentos'] as $documento): ?>
                                     <tr class="">
-                                        <td class="text-center" scope="row"><small><?= $documento['titulo']; ?></small></td>
-                                        <td class="text-center"><small><?= $documento['expediente']; ?></small></td>
-                                        <td class="text-center"><small><?= $documento['terminoPropuesto']; ?></small></td>
-                                        <td class="text-center"><small><?= modificarFecha($documento['fechaSuscripcion']); ?></small></td>
-                                        <td class="text-center"><small><?= $documento['ubicacion']; ?></small></td>
-                                        <td class="text-center"><small><?= $documento['autor']; ?></small></td>
-                                        <td class="text-center">
+                                        <td class="text-center align-middle" scope="row"><small><?= $documento['titulo']; ?></small></td>
+                                        <td class="text-center align-middle"><small><?= $documento['expediente']; ?></small></td>
+                                        <td class="text-center align-middle"><small><?= $documento['terminoPropuesto']; ?></small></td>
+                                        <td class="text-center align-middle"><small><?= modificarFecha($documento['fechaSuscripcion']); ?></small></td>
+                                        <!-- <td class="text-center"><small><?php //$documento['ubicacion']; ?></small></td> -->
+                                        <td class="text-center align-middle"><small><?= $documento['autor']; ?></small></td>
+                                        <td class="text-center align-middle">
+                                            
+                                            <a name="" id="" class="btn btn-primary btn-sm d-block" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver más</a>
 
-                                            <a name="" id="" class="btn btn-outline-primary btn-sm" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver más</a>
-
-                                            <a name="" id="" class="btn btn-outline-danger btn-sm px-4" href="assets/archivos/<?= $documento['archivoAdjunto']; ?>" target="_BLANK" role="button">pdf</a>
+                                            <a name="" id="" class="btn btn-secondary btn-sm px-4 d-block" href="assets/archivos/<?= $documento['archivoAdjunto']; ?>" target="_BLANK" role="button">PDF</a>
 
                                         <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"): ?>
                                             <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>

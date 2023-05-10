@@ -104,6 +104,7 @@
 
                                             if($idDocumento){
                                                 $_SESSION['msj']="Documento registrado con éxito";
+                                                
 
                                                 $token=hash_hmac('sha1',$idDocumento,KEY_TOKEN);
                                                 

@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
 
     class DocumentoController
     {
@@ -293,7 +293,8 @@
         }
 
         public function procesarLogin()
-        {
+        {    
+            session_start();
             $usuario=$_POST['usuario'];
             $password=$_POST['password'];
 

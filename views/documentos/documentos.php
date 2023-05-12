@@ -15,7 +15,7 @@
 
         <div class="row my-3">
             <div class="col-12">
-                <h2 class="text-center lead"><?= $data['titulo'] ?></h2>
+                <h2 class="text-center lead fs-3"><?= $data['titulo'] ?></h2>
 
                 <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"):?>
                         <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=create" role="button">Nuevo registro</a>
@@ -55,10 +55,10 @@
                                             <a name="" id="" class="btn btn-secondary btn-sm px-4 d-block" href="assets/archivos/<?= $documento['archivoAdjunto']; ?>" target="_BLANK" role="button">PDF</a>
 
                                         <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"): ?>
-                                            <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>
+                                            <a name="" id="" class="btn btn-info btn-sm d-block" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>
                                             
                                             <!-- Button trigger modal -->
-                                            <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmarModal<?= $documento['idDocumento']; ?>">Eliminar</a>
+                                            <a class="btn btn-danger btn-sm d-block" data-bs-toggle="modal" data-bs-target="#confirmarModal<?= $documento['idDocumento']; ?>">Eliminar</a>
                                         <?php endif ?>
 
                                             <!-- Modal -->

@@ -9,7 +9,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Gestor de documentos</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/boxicons.min.css">
 
@@ -19,7 +19,7 @@
     <!-- SweetAlert -->
     <script src="js/sweetalert2@11.js"></script>
 
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="js/all.js" crossorigin="anonymous"></script>
     
     <!-- Custom Style -->
     <link rel="stylesheet" href="css/customStyle.css">

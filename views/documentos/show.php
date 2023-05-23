@@ -14,15 +14,24 @@
         <div class="row my-3">
             <div class="col-12">
                 
-                    <a name="" id="" class="btn btn-primary btn-sm" href="index.php" role="button">Documentos</a>
+                   
+                            <a name="" id="" class="btn btn-primary btn-sm" href="index.php" role="button">Documentos</a>
 
-                    <a name="" id="" class="btn btn-danger btn-sm px-4" href="assets/archivos/<?= $data['documento']['archivoAdjunto']; ?>" target="_BLANK"  role="button">pdf</a>
+                            <a name="" id="" class="btn btn-secondary btn-sm px-4" href="assets/archivos/<?= $data['documento']['archivoAdjunto']; ?>" target="_BLANK"  role="button">PDF</a>
+                       
+                    
                 
                 <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"):?>
-                
-                    <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $data['id']; ?>&token=<?= hash_hmac('sha1',$data['id'],KEY_TOKEN); ?>" role="button">Editar</a>
 
-                    <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmarModal<?= $data['id']; ?>">Eliminar</a>   
+                    
+                       
+                            <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=create" role="button">Nuevo registro</a>
+                
+                            <a name="" id="" class="btn btn-info btn-sm" href="index.php?c=Documento&m=edit&id=<?= $data['id']; ?>&token=<?= hash_hmac('sha1',$data['id'],KEY_TOKEN); ?>" role="button">Editar</a>
+
+                            <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmarModal<?= $data['id']; ?>">Eliminar</a>
+                       
+                  
                                  
                 <?php endif ?>
                     <!-- Modal -->

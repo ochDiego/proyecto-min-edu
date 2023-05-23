@@ -28,13 +28,19 @@
 
         public function store()
         {
+            $anio=$_POST['anio'];
+            $mes=$_POST['mes'];
+            $dia=$_POST['dia'];
+
+            $fechaSuscripcion = $dia . $mes . $anio;
+
+
             $titulo=$_POST['titulo'];
             $expediente=$_POST['expediente'];
             $apellidoAutor=$_POST['apellidoAutor'];
             $nombreAutor=$_POST['nombreAutor'];
 
             $entidad=$_POST['entidad'];
-            $fechaSuscripcion=$_POST['fechaSuscripcion'];
             $numPag=$_POST['numPag'];
             $numHojas=$_POST['numHojas'];
             $otros=$_POST['otros'];
@@ -56,7 +62,7 @@
             $documento=$_FILES['documento']['name'];
             $responsable=$_POST['responsable'];
 
-            if(empty($titulo) || empty($expediente) || empty($nombreAutor) || empty($apellidoAutor) || empty($entidad) || empty($fechaSuscripcion) || empty($numPag) || empty($numHojas) || empty($otros) || empty($objeto) || empty($docVinculado) || empty($notaContenido) || empty($lugarRedaccion) || empty($natuAlcanceForma) || empty($vigencia) || empty($numDecreto) || empty($aprobLey) || empty($terminoPropuesto) || empty($carpeta) || empty($folio) || empty($documento) || empty($responsable)){
+            if(empty($titulo) || empty($expediente) || empty($nombreAutor) || empty($apellidoAutor) || empty($entidad) || empty($numPag) || empty($numHojas) || empty($otros) || empty($objeto) || empty($docVinculado) || empty($notaContenido) || empty($lugarRedaccion) || empty($natuAlcanceForma) || empty($vigencia) || empty($numDecreto) || empty($aprobLey) || empty($terminoPropuesto) || empty($carpeta) || empty($folio) || empty($documento) || empty($responsable)){
                 $_SESSION['msj']="Error: Todos los campos son requeridos";
                 $_SESSION['msj_type']="danger";
 

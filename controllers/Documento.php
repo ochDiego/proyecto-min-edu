@@ -62,6 +62,9 @@
             $documento=$_FILES['documento']['name'];
             $responsable=$_POST['responsable'];
 
+            $autorInstitucional=$_POST['autorInstitucional'];
+            $terminoControlado=$_POST['terminoControlado'];
+
             if(empty($titulo) || empty($expediente) || empty($nombreAutor) || empty($apellidoAutor) || empty($entidad) || empty($numPag) || empty($numHojas) || empty($otros) || empty($objeto) || empty($docVinculado) || empty($notaContenido) || empty($lugarRedaccion) || empty($natuAlcanceForma) || empty($vigencia) || empty($numDecreto) || empty($aprobLey) || empty($terminoPropuesto) || empty($carpeta) || empty($folio) || empty($documento) || empty($responsable)){
                 $_SESSION['msj']="Error: Todos los campos son requeridos";
                 $_SESSION['msj_type']="danger";
@@ -106,7 +109,7 @@
                                                 move_uploaded_file($tmpDocumento,"assets/archivos/".$nombreDocumento);
                                             }
 
-                                            $idDocumento=$this->documento->insertDocumento($titulo,$expediente,$idMencionResp,$fechaSuscripcion,$idDescripFisica,$idNotas,$terminoPropuesto,$idUbicacion,$responsable,$nombreDocumento);
+                                            $idDocumento=$this->documento->insertDocumento($titulo,$expediente,$idMencionResp,$fechaSuscripcion,$idDescripFisica,$idNotas,$terminoPropuesto,$idUbicacion,$responsable,$nombreDocumento,$autorInstitucional,$terminoControlado);
 
                                             if($idDocumento){
                                                 $_SESSION['msj']="Documento registrado con éxito";
@@ -183,6 +186,9 @@
             $folio=$_POST['folio'];
             $responsable=$_POST['responsable'];
 
+            $autorInstitucional=$_POST['autorInstitucional'];
+            $terminoControlado=$_POST['terminoControlado'];
+
             $archivo=(isset($_FILES['archivo']['name']))?$_FILES['archivo']['name']:"";
 
             if(empty($titulo) || empty($expediente) || empty($nombreAutor) || empty($apellidoAutor) || empty($entidad) || empty($fechaSuscripcion) || empty($numPag) || empty($numHojas) || empty($otros) || empty($formato) || empty($objeto) || empty($docVinculado) || empty($notaContenido) || empty($lugarRedaccion) || empty($natuAlcanceForma) || empty($vigencia) || empty($numDecreto) || empty($aprobLey) || empty($carpeta) || empty($terminoPropuesto) || empty($folio) || empty($responsable)){
@@ -217,7 +223,7 @@
                                 if($updateUbicacion){
                                     $updateDescripFisica=$this->documento->updateDescripFisica($descripFisicaID,$numPag,$numHojas,$formato,$otros);
                                     if($updateDescripFisica){
-                                        $updateDocumento=$this->documento->updateDocumento($documentoID,$titulo,$expediente,$fechaSuscripcion,$terminoPropuesto,$responsable);
+                                        $updateDocumento=$this->documento->updateDocumento($documentoID,$titulo,$expediente,$fechaSuscripcion,$terminoPropuesto,$responsable,$autorInstitucional,$terminoControlado);
                                         if($updateDocumento){
                                             $_SESSION['msj']="Documento actualizado con éxito!";
 

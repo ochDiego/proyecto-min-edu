@@ -90,7 +90,7 @@
                             </tbody>
                         </table>
                     </div>
-            <?php esle: ?>
+            <?php else: ?>
                     <h2 class="text-center">No hay datos actualmente</h2>                          
             <?php endif ?>
                 

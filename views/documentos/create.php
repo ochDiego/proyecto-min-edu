@@ -51,7 +51,7 @@
                             <div class="col-3">
                                 <div class="mb-3">
                                   <label for="apellidoAutor" class="form-label">Apellido del autor:</label>
-                                  <input type="text" name="apellidoAutor" id="apellidoAutor" class="form-control form-control-sm" placeholder="Ingrese el apellido" aria-describedby="helpId" required>
+                                  <input type="text" name="apellidoAutor" id="apellidoAutor" class="form-control" placeholder="Ingrese el apellido" aria-describedby="helpId" required>
                                 </div>
                             </div>
 
@@ -109,7 +109,7 @@
                              <div class="col-2">
                                 <div class="mb-3">
                                   <label for="numPag" class="form-label">Número de paginas:</label>
-                                  <input type="number" name="numPag" id="numPag" class="form-contro" placeholder="Ingrese el número" aria-describedby="helpId" required>
+                                  <input type="number" name="numPag" id="numPag" class="form-control" placeholder="Ingrese el número" aria-describedby="helpId" required>
                                 </div>
                             </div>
 
@@ -224,8 +224,29 @@
                                 </div>
                             </div>
 
+                            <div class="col-3">
+                                <div class="mb-3">
+                                  <label for="autorInstitucional" class="form-label">Autor institucional:</label>
+                                  <input type="text" name="autorInstitucional" id="autorInstitucional" class="form-control" placeholder="Ingrese la carpeta" aria-describedby="helpId">
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="mb-3">
+                                  <label for="terminoControlado" class="form-label">Término controlado:</label>
+                                  <input type="text" name="terminoControlado" id="terminoControlado" class="form-control" placeholder="Ingrese la carpeta" aria-describedby="helpId">
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+
+                            </div>
+                            <div class="col-3">
+                              
+                            </div>
+
                             <div class="d-grid col-4 mx-auto">
-                                <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                                <button type="submit" class="btn btn-success">Guardar</button>
                             </div>
 
                            

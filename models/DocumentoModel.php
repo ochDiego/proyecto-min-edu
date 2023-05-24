@@ -140,9 +140,9 @@
             return $idInsert['response'];
         }
 
-        public function insertDocumento($titulo,$expediente,$mencionRespID,$fechaSuscrip,$descripFisicaID,$notasID,$terminoPropuesto,$ubicacionID,$responsable,$archivoAdjunto)
+        public function insertDocumento($titulo,$expediente,$mencionRespID,$fechaSuscrip,$descripFisicaID,$notasID,$terminoPropuesto,$ubicacionID,$responsable,$archivoAdjunto,$autorInstitucional,$terminoControlado)
         {
-            $sentencia=$this->db->prepare("CALL sp_insert_documento(?,?,?,?,?,?,?,?,?,?)");
+            $sentencia=$this->db->prepare("CALL sp_insert_documento(?,?,?,?,?,?,?,?,?,?,?,?)");
             $sentencia->bindParam(1,$titulo);
             $sentencia->bindParam(2,$expediente);
             $sentencia->bindParam(3,$mencionRespID);
@@ -153,6 +153,8 @@
             $sentencia->bindParam(8,$ubicacionID);
             $sentencia->bindParam(9,$responsable);
             $sentencia->bindParam(10,$archivoAdjunto);
+            $sentencia->bindParam(11,$autorInstitucional);
+            $sentencia->bindParam(12,$terminoControlado);
             $sentencia->execute();
             $idInsert=$sentencia->fetch(PDO::FETCH_ASSOC);
 
@@ -270,15 +272,17 @@
             return $resp['response'];
         }
 
-        public function updateDocumento($id,$titulo,$expediente,$fechaSuscrip,$terminoPropuesto,$responsable)
+        public function updateDocumento($id,$titulo,$expediente,$fechaSuscrip,$terminoPropuesto,$responsable,$autorInstitucional,$terminoControlado)
         {
-            $sentencia=$this->db->prepare("CALL sp_update_documento(?,?,?,?,?,?)");
+            $sentencia=$this->db->prepare("CALL sp_update_documento(?,?,?,?,?,?,?,?)");
             $sentencia->bindParam(1,$id);
             $sentencia->bindParam(2,$titulo);
             $sentencia->bindParam(3,$expediente);
             $sentencia->bindParam(4,$fechaSuscrip);
             $sentencia->bindParam(5,$terminoPropuesto);
             $sentencia->bindParam(6,$responsable);
+            $sentencia->bindParam(7,$autorInstitucional);
+            $sentencia->bindParam(8,$terminoControlado);
             $sentencia->execute();
             $resp=$sentencia->fetch(PDO::FETCH_ASSOC);
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2023 a las 23:15:34
+-- Tiempo de generación: 03-06-2023 a las 01:00:42
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE PROCEDURE `sp_delete_documento` (IN `_id` INT(11))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_documento` (IN `_id` INT(11))  BEGIN
         	DECLARE existe_documento INT;
         	DECLARE response INT;
             
@@ -39,7 +39,7 @@ CREATE PROCEDURE `sp_delete_documento` (IN `_id` INT(11))  BEGIN
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_existe_expediente` (IN `_expediente` VARCHAR(200))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_expediente` (IN `_expediente` VARCHAR(200))  BEGIN
         	DECLARE existe_expediente INT;
         	DECLARE response INT;
             
@@ -54,7 +54,7 @@ CREATE PROCEDURE `sp_existe_expediente` (IN `_expediente` VARCHAR(200))  BEGIN
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_existe_expediente_update` (`_id` INT, `_expediente` VARCHAR(200))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_expediente_update` (`_id` INT, `_expediente` VARCHAR(200))  BEGIN
         	DECLARE existe_expediente INT;
             DECLARE response INT;
             
@@ -67,7 +67,7 @@ CREATE PROCEDURE `sp_existe_expediente_update` (`_id` INT, `_expediente` VARCHAR
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_existe_fechaSuscripcion` (IN `_fechaSuscrip` VARCHAR(200))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_fechaSuscripcion` (IN `_fechaSuscrip` VARCHAR(200))  BEGIN
         	DECLARE existe_fecha INT;
         	DECLARE response INT;
             
@@ -82,7 +82,7 @@ CREATE PROCEDURE `sp_existe_fechaSuscripcion` (IN `_fechaSuscrip` VARCHAR(200)) 
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_existe_fechaSuscrip_update` (`_id` INT, `_fechaSuscrip` VARCHAR(100))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_fechaSuscrip_update` (`_id` INT, `_fechaSuscrip` VARCHAR(100))  BEGIN
         	DECLARE existe_fecha INT;
         	DECLARE response INT;
             
@@ -96,7 +96,7 @@ CREATE PROCEDURE `sp_existe_fechaSuscrip_update` (`_id` INT, `_fechaSuscrip` VAR
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_existe_titulo` (IN `_titulo` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_titulo` (IN `_titulo` VARCHAR(255))  BEGIN
         	DECLARE existe_titulo INT;
         	DECLARE response INT;
             
@@ -111,7 +111,7 @@ CREATE PROCEDURE `sp_existe_titulo` (IN `_titulo` VARCHAR(255))  BEGIN
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_existe_titulo_update` (`_id` INT, `_titulo` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_existe_titulo_update` (`_id` INT, `_titulo` VARCHAR(255))  BEGIN
         	DECLARE existe_titulo INT;
             DECLARE response INT;
             
@@ -124,7 +124,7 @@ CREATE PROCEDURE `sp_existe_titulo_update` (`_id` INT, `_titulo` VARCHAR(255))  
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_insert_autor` (`_nombre` VARCHAR(80), `_apellido` VARCHAR(80))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_autor` (`_nombre` VARCHAR(80), `_apellido` VARCHAR(80))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO autor(nombre,apellido) VALUES(TRIM(_nombre),TRIM(_apellido));
@@ -133,7 +133,7 @@ CREATE PROCEDURE `sp_insert_autor` (`_nombre` VARCHAR(80), `_apellido` VARCHAR(8
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_insert_descripFisica` (IN `_numPag` VARCHAR(10), IN `_numHojas` VARCHAR(10), IN `_formato` VARCHAR(10), IN `_otros` VARCHAR(100))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_descripFisica` (IN `_numPag` VARCHAR(10), IN `_numHojas` VARCHAR(10), IN `_formato` VARCHAR(10), IN `_otros` VARCHAR(100))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO descripfisica(numPag,numHojas,formato,otros) VALUES(TRIM(_numPag),TRIM(_numHojas),TRIM(_formato),TRIM(_otros));
@@ -142,16 +142,16 @@ CREATE PROCEDURE `sp_insert_descripFisica` (IN `_numPag` VARCHAR(10), IN `_numHo
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_insert_documento` (IN `_titulo` VARCHAR(255), IN `_expediente` VARCHAR(200), IN `_mencionRespoID` INT(11), IN `_fechaSuscripcion` VARCHAR(100), IN `_descripFisicaID` INT(11), IN `_notasID` INT(11), IN `_terminoPropuesto` VARCHAR(22), IN `_ubicacionID` INT(11), IN `_responsable` VARCHAR(150), IN `_archivoAdjunto` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_documento` (IN `_titulo` VARCHAR(255), IN `_expediente` VARCHAR(200), IN `_mencionRespoID` INT(11), IN `_fechaSuscripcion` VARCHAR(100), IN `_descripFisicaID` INT(11), IN `_notasID` INT(11), IN `_terminoPropuesto` VARCHAR(22), IN `_ubicacionID` INT(11), IN `_responsable` VARCHAR(150), IN `_archivoAdjunto` VARCHAR(255), IN `_autorInstitucional` VARCHAR(255), IN `_terminoControlado` VARCHAR(255))  BEGIN
         	DECLARE response INT;
             
-            INSERT INTO documento(titulo,expediente,mencionResponsabilidad_id,fechaSuscripcion,descripfisica_id,notas_id,terminoPropuesto,ubicacion_id,responsable,archivoAdjunto) VALUES(TRIM(_titulo),TRIM(_expediente),_mencionRespoID,TRIM(_fechaSuscripcion),_descripFisicaID,_notasID,TRIM(_terminoPropuesto),_ubicacionID,TRIM(_responsable),TRIM(_archivoAdjunto));
+            INSERT INTO documento(titulo,expediente,mencionResponsabilidad_id,fechaSuscripcion,descripfisica_id,notas_id,terminoPropuesto,ubicacion_id,responsable,autorInstitucional,terminoControlado,archivoAdjunto) VALUES(TRIM(_titulo),TRIM(_expediente),_mencionRespoID,TRIM(_fechaSuscripcion),_descripFisicaID,_notasID,TRIM(_terminoPropuesto),_ubicacionID,TRIM(_responsable),TRIM(_autorInstitucional),TRIM(_terminoControlado),TRIM(_archivoAdjunto));
             SET response = LAST_INSERT_ID();
             
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_insert_entidad` (`_nombre` VARCHAR(50))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_entidad` (`_nombre` VARCHAR(50))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO entidad(nombre) VALUES(TRIM(_nombre));
@@ -160,7 +160,7 @@ CREATE PROCEDURE `sp_insert_entidad` (`_nombre` VARCHAR(50))  BEGIN
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_insert_mencionResponsabilidad` (IN `_autorID` INT(11), IN `_entidadID` INT(11))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_mencionResponsabilidad` (IN `_autorID` INT(11), IN `_entidadID` INT(11))  BEGIN
         	DECLARE response INT;
             
             INSERT INTO mencionresponsabilidad(autor_id,entidad_id) VALUES(_autorID,_entidadID);
@@ -169,7 +169,7 @@ CREATE PROCEDURE `sp_insert_mencionResponsabilidad` (IN `_autorID` INT(11), IN `
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_insert_notas` (`_objeto` VARCHAR(100), `_docVinculado` VARCHAR(150), `_notaContenido` VARCHAR(150), `_lugarRedaccion` VARCHAR(100), `_natuAlcanceForma` VARCHAR(100), `_vigencia` VARCHAR(80), `_numDecreto` VARCHAR(50), `_aprobadoLey` VARCHAR(50))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_notas` (`_objeto` VARCHAR(100), `_docVinculado` VARCHAR(150), `_notaContenido` VARCHAR(150), `_lugarRedaccion` VARCHAR(100), `_natuAlcanceForma` VARCHAR(100), `_vigencia` VARCHAR(80), `_numDecreto` VARCHAR(50), `_aprobadoLey` VARCHAR(50))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO notas(objeto,doc_vinculado,nota_contenido,lugar_redaccion,naturaleza_alcance_forma,vigencia,numero_decreto,aprobado_ley) VALUES(TRIM(_objeto),TRIM(_docVinculado),TRIM(_notaContenido),TRIM(_lugarRedaccion),TRIM(_natuAlcanceForma),TRIM(_vigencia),TRIM(_numDecreto),TRIM(_aprobadoLey));
@@ -178,7 +178,7 @@ CREATE PROCEDURE `sp_insert_notas` (`_objeto` VARCHAR(100), `_docVinculado` VARC
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_insert_ubicacion` (IN `_carpeta` VARCHAR(20), IN `_folio` VARCHAR(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_ubicacion` (IN `_carpeta` VARCHAR(20), IN `_folio` VARCHAR(20))  BEGIN
         	DECLARE response INT;
             
         	INSERT INTO ubicacion(carpeta,folio) VALUES(TRIM(_carpeta),TRIM(_folio));
@@ -187,12 +187,12 @@ CREATE PROCEDURE `sp_insert_ubicacion` (IN `_carpeta` VARCHAR(20), IN `_folio` V
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_select_archivo` (`_id` INT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_archivo` (`_id` INT)  BEGIN
         	SELECT archivoAdjunto FROM documento WHERE id=_id AND status = 1 LIMIT 1;
         END$$
 
-CREATE PROCEDURE `sp_select_documento` (IN `_id` INT(11))  BEGIN
-        	SELECT f.id AS descripFisicaID, n.id AS notasID, u.id AS ubicacionID, a.id AS autorID, e.id AS entidadID,titulo,expediente,fechaSuscripcion, a.nombre AS nombreAutor, a.apellido AS apellidoAutor, e.nombre AS entidad,formato, numHojas,numPag,otros,doc_vinculado,lugar_redaccion,naturaleza_alcance_forma,nota_contenido,numero_decreto,objeto, aprobado_ley,vigencia,terminoPropuesto,carpeta,folio,responsable,archivoAdjunto 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_documento` (IN `_id` INT(11))  BEGIN
+        	SELECT f.id AS descripFisicaID, n.id AS notasID, u.id AS ubicacionID, a.id AS autorID, e.id AS entidadID,titulo,expediente,fechaSuscripcion, a.nombre AS nombreAutor, a.apellido AS apellidoAutor, e.nombre AS entidad,formato, numHojas,numPag,otros,doc_vinculado,lugar_redaccion,naturaleza_alcance_forma,nota_contenido,numero_decreto,objeto, aprobado_ley,vigencia,terminoPropuesto,carpeta,folio,responsable,autorInstitucional,terminoControlado,archivoAdjunto 
 		FROM documento d 
 		INNER JOIN descripfisica f 
 		ON d.descripfisica_id = f.id 
@@ -210,8 +210,8 @@ CREATE PROCEDURE `sp_select_documento` (IN `_id` INT(11))  BEGIN
 		AND d.status = 1;
         END$$
 
-CREATE PROCEDURE `sp_select_documentos` ()  BEGIN
-        	SELECT d.id AS idDocumento, f.id AS idDescripFisica, n.id AS idNotas, u.id AS idUbicacion, a.id AS idAutor, e.id AS idEntidad, d.titulo, d.expediente, d.fechaSuscripcion, CONCAT(a.nombre,' ',a.apellido) AS autor, CONCAT_WS(' ', f.formato, f.numHojas, f.numPag, f.otros) AS descripFisica, CONCAT_WS(' ', n.doc_vinculado, n.lugar_redaccion, n.naturaleza_alcance_forma, n.nota_contenido,n.numero_decreto, n.objeto, n.aprobado_ley, n.vigencia) AS nota, d.terminoPropuesto, CONCAT_WS(' ', u.carpeta, u.folio) AS ubicacion, d.archivoAdjunto, d.responsable 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_documentos` ()  BEGIN
+        	SELECT d.id AS idDocumento, f.id AS idDescripFisica, n.id AS idNotas, u.id AS idUbicacion, a.id AS idAutor, e.id AS idEntidad, d.titulo, d.expediente, d.fechaSuscripcion, CONCAT(a.nombre,' ',a.apellido) AS autor, CONCAT_WS(' ', f.formato, f.numHojas, f.numPag, f.otros) AS descripFisica, CONCAT_WS(' ', n.doc_vinculado, n.lugar_redaccion, n.naturaleza_alcance_forma, n.nota_contenido,n.numero_decreto, n.objeto, n.aprobado_ley, n.vigencia) AS nota, d.terminoPropuesto, CONCAT_WS(' ', u.carpeta, u.folio) AS ubicacion, autorInstitucional, terminoControlado, d.archivoAdjunto, d.responsable 
     FROM documento d 
     INNER JOIN descripfisica f 
     ON d.descripfisica_id = f.id 
@@ -228,7 +228,7 @@ CREATE PROCEDURE `sp_select_documentos` ()  BEGIN
     WHERE d.status = 1;
         END$$
 
-CREATE PROCEDURE `sp_update_archivo` (`_id` INT, `_archivo` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_archivo` (`_id` INT, `_archivo` VARCHAR(255))  BEGIN
         	DECLARE existe_documento INT;
         	DECLARE response INT;
             SET existe_documento = (SELECT COUNT(id) FROM documento WHERE id=_id AND status = 1 LIMIT 1);
@@ -242,7 +242,7 @@ CREATE PROCEDURE `sp_update_archivo` (`_id` INT, `_archivo` VARCHAR(255))  BEGIN
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_update_autor` (`_id` INT, `_nombre` VARCHAR(60), `_apellido` VARCHAR(60))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_autor` (`_id` INT, `_nombre` VARCHAR(60), `_apellido` VARCHAR(60))  BEGIN
         	DECLARE existe_autor INT;
         	DECLARE response INT;
             SET existe_autor = (SELECT COUNT(id) FROM autor WHERE id=_id LIMIT 1);
@@ -256,7 +256,7 @@ CREATE PROCEDURE `sp_update_autor` (`_id` INT, `_nombre` VARCHAR(60), `_apellido
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_update_descripFisica` (`_id` INT, `_numPag` VARCHAR(10), `_numHojas` VARCHAR(10), `_formato` VARCHAR(10), `_otros` VARCHAR(80))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_descripFisica` (`_id` INT, `_numPag` VARCHAR(10), `_numHojas` VARCHAR(10), `_formato` VARCHAR(10), `_otros` VARCHAR(80))  BEGIN
         	DECLARE existe_descripFisica INT;
         	DECLARE response INT;
             SET existe_descripFisica = (SELECT COUNT(id) FROM descripfisica WHERE id=_id LIMIT 1);
@@ -270,13 +270,13 @@ CREATE PROCEDURE `sp_update_descripFisica` (`_id` INT, `_numPag` VARCHAR(10), `_
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_update_documento` (IN `_id` INT, IN `_titulo` VARCHAR(255), IN `_expediente` VARCHAR(100), IN `_fechaSuscripcion` VARCHAR(60), IN `_terminoPropuesto` VARCHAR(200), IN `_responsable` VARCHAR(150))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_documento` (IN `_id` INT, IN `_titulo` VARCHAR(255), IN `_expediente` VARCHAR(100), IN `_fechaSuscripcion` VARCHAR(60), IN `_terminoPropuesto` VARCHAR(200), IN `_responsable` VARCHAR(150), IN `_autorInstitucional` VARCHAR(255), IN `_terminoControlado` VARCHAR(255))  BEGIN
         	DECLARE existe_documento INT;
         	DECLARE response INT;
             SET existe_documento = (SELECT COUNT(id) FROM documento WHERE id=_id AND status = 1 LIMIT 1);
             
             IF existe_documento > 0 THEN
-            	UPDATE documento SET titulo=_titulo,expediente=_expediente,fechaSuscripcion=_fechaSuscripcion,terminoPropuesto=_terminoPropuesto,responsable=_responsable WHERE id=_id;
+            	UPDATE documento SET titulo=_titulo,expediente=_expediente,fechaSuscripcion=_fechaSuscripcion,terminoPropuesto=_terminoPropuesto,responsable=_responsable,autorInstitucional=_autorInstitucional,terminoControlado=_terminoControlado WHERE id=_id;
                 SET response = 1;
             ELSE
             	SET response = 0;
@@ -284,7 +284,7 @@ CREATE PROCEDURE `sp_update_documento` (IN `_id` INT, IN `_titulo` VARCHAR(255),
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_update_entidad` (`_id` INT, `_nombre` VARCHAR(60))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_entidad` (`_id` INT, `_nombre` VARCHAR(60))  BEGIN
         	DECLARE existe_entidad INT;
         	DECLARE response INT;
             SET existe_entidad = (SELECT COUNT(id) FROM entidad WHERE id=_id LIMIT 1);
@@ -298,7 +298,7 @@ CREATE PROCEDURE `sp_update_entidad` (`_id` INT, `_nombre` VARCHAR(60))  BEGIN
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_update_notas` (`_id` INT, `_objeto` VARCHAR(150), `_docVinculado` VARCHAR(150), `_notaContenido` VARCHAR(150), `_lugarRedaccion` VARCHAR(150), `_natuAlcanceForma` VARCHAR(150), `_vigencia` VARCHAR(50), `_numDecreto` VARCHAR(50), `_aprobadoLey` VARCHAR(50))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_notas` (`_id` INT, `_objeto` VARCHAR(150), `_docVinculado` VARCHAR(150), `_notaContenido` VARCHAR(150), `_lugarRedaccion` VARCHAR(150), `_natuAlcanceForma` VARCHAR(150), `_vigencia` VARCHAR(50), `_numDecreto` VARCHAR(50), `_aprobadoLey` VARCHAR(50))  BEGIN
         	DECLARE existe_nota INT;
         	DECLARE response INT;
             SET existe_nota = (SELECT COUNT(id) FROM notas WHERE id=_id LIMIT 1);
@@ -312,7 +312,7 @@ CREATE PROCEDURE `sp_update_notas` (`_id` INT, `_objeto` VARCHAR(150), `_docVinc
             SELECT response;
         END$$
 
-CREATE PROCEDURE `sp_update_ubicacion` (`_id` INT, `_carpeta` VARCHAR(20), `_folio` VARCHAR(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_ubicacion` (`_id` INT, `_carpeta` VARCHAR(20), `_folio` VARCHAR(20))  BEGIN
         	DECLARE existe_ubicacion INT;
         	DECLARE response INT;
             SET existe_ubicacion = (SELECT COUNT(id) FROM ubicacion WHERE id=_id LIMIT 1);
@@ -372,7 +372,18 @@ INSERT INTO `autor` (`id`, `nombre`, `apellido`) VALUES
 (63, 'arc', 'sed'),
 (64, 'consectetur', 'dolores'),
 (65, 'Nostrum', 'adip'),
-(66, 'pellat', 'eius');
+(66, 'pellat', 'eius'),
+(67, 'sit', 'voluptatum,'),
+(68, 'perspiciatis', 'ipsum'),
+(69, 'ipsum', 'Lorem'),
+(70, 'Ratione', 'possimus'),
+(71, 'asdasd', 'asdsadas'),
+(72, 'asdasd', 'asdad'),
+(73, 'asdasd', 'asdad'),
+(74, 'asdasd', 'asdad'),
+(75, 'asdasd', 'asdad'),
+(76, 'asdasd', 'asdad'),
+(77, 'asdasd', 'asdad');
 
 -- --------------------------------------------------------
 
@@ -417,7 +428,18 @@ INSERT INTO `descripfisica` (`id`, `numPag`, `numHojas`, `formato`, `otros`) VAL
 (54, '435', '644', 'stiae arc', 'sit iste molestiae aliquam omnis explicabo'),
 (55, '56', '546', 'consectetu', 't amet consectetur adipisicing elit. Unde aut recusandae vo'),
 (56, '43', '324', 'Fuga quos', 'olorem, molestiae architecto hic temporibus eaque vitae'),
-(57, '424', '46', 'perferendi', 'Corrupti nobis, eum hic pariatur iste perferendis consequuntur');
+(57, '424', '46', 'perferendi', 'Corrupti nobis, eum hic pariatur iste perferendis consequuntur'),
+(58, '123', '432', 'eaque debi', 'sit amet consectetur adipisicing elit. Ipsum voluptatum,'),
+(59, '345', '435', 'Corporis l', 'Corporis laudantium error perspiciatis odio'),
+(60, '2323', '42', 'Lorem ipsu', 'ipsam delectus nulla unde tenetur sit necessitatibus'),
+(61, '243', '2432', 'Ratione po', 'Ratione possimus nobis iusto nihil vero'),
+(62, '23432', '2432', 'asdsad', 'adasdas'),
+(63, '23532', '421412', 'asdsad', 'asdsadsa'),
+(64, '23532', '421412', 'asdsad', 'asdsadsa'),
+(65, '23532', '421412', 'asdsad', 'asdsadsa'),
+(66, '23532', '421412', 'asdsad', 'asdsadsa'),
+(67, '23532', '421412', 'asdsad', 'asdsadsa'),
+(68, '23532', '421412', 'asdsad', 'asdsadsa');
 
 -- --------------------------------------------------------
 
@@ -436,6 +458,8 @@ CREATE TABLE `documento` (
   `terminoPropuesto` varchar(200) NOT NULL,
   `ubicacion_id` int(11) NOT NULL,
   `responsable` varchar(150) NOT NULL,
+  `autorInstitucional` varchar(150) DEFAULT NULL,
+  `terminoControlado` varchar(150) DEFAULT NULL,
   `archivoAdjunto` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -444,14 +468,20 @@ CREATE TABLE `documento` (
 -- Volcado de datos para la tabla `documento`
 --
 
-INSERT INTO `documento` (`id`, `titulo`, `expediente`, `mencionResponsabilidad_id`, `fechaSuscripcion`, `descripfisica_id`, `notas_id`, `terminoPropuesto`, `ubicacion_id`, `responsable`, `archivoAdjunto`, `status`) VALUES
-(1, '. Fuga quos et quod numquam quia praesentium', 'libero pariatur soluta, corrupti repudiandae quis expedi', 50, '2023-05-13', 51, 49, '. Fuga quos et quod nu', 51, '. Fuga quos et quod numquam quia praesentium', '1683147330_example.pdf', 1),
-(2, 'Fuga quos et quod numquam quia praesentium i', 'Fuga quos et quod numquam quia praesentium i', 51, '2023-05-21', 52, 50, 'eveniet illum sed cor', 52, 'necessitatibus error voluptatum ad ullam sint', '1683147425_example.pdf', 1),
-(3, 'dignissimos ad adipisci voluptatum corporis', 'officiis natus! Qui, perspiciat', 52, '2023-04-07', 53, 51, 'dignissimos ad adipisc', 53, 'dignissimos ad adipisci voluptatum corporis', '1683147517_example.pdf', 1),
-(4, 'sit iste molestiae aliquam omnis explicabo', 'l debitis? Impedit labore accusantium,', 53, '2023-03-15', 54, 52, 'sed corporis nostrum', 54, 'sit iste molestiae aliquam omnis explicabo', '1683147615_example.pdf', 1),
-(5, 't amet consectetur adipisicing elit. Unde aut recusandae vo', 'consectetur libero pariatur dolor ipsam dolores a', 54, '2023-01-16', 55, 53, 'consectetur libero par', 55, 't amet consectetur adipisicing elit', '1683147722_example.pdf', 1),
-(6, 'olorem, molestiae architecto hic temporibus eaque vitae', 'Nostrum dolorum dignissimos ad adip', 55, '2023-03-20', 56, 54, 'Fuga quos et quod numq', 56, 'olorem, molestiae architecto hic temporibus eaque vitae', '1683147812_example.pdf', 1),
-(7, 'perferendis veniam eius maiores facilis', 'Corrupti nobis, eum hic pariatur iste perferendis consequuntur', 56, '2023-03-25', 57, 55, 'Facilis cum eveniet, v', 57, 'Facilis cum eveniet,', '1683147933_example.pdf', 1);
+INSERT INTO `documento` (`id`, `titulo`, `expediente`, `mencionResponsabilidad_id`, `fechaSuscripcion`, `descripfisica_id`, `notas_id`, `terminoPropuesto`, `ubicacion_id`, `responsable`, `autorInstitucional`, `terminoControlado`, `archivoAdjunto`, `status`) VALUES
+(1, 'Fuga quos et quod numquam quia praesentium', 'libero pariatur soluta, corrupti repudiandae quis expedi', 50, '2023-05-13', 51, 49, '. Fuga quos et quod nu', 51, '. Fuga quos et quod numquam quia praesentium', NULL, NULL, '1683147330_example.pdf', 1),
+(2, 'Fuga quos et quod numquam quia praesentium i', 'Fuga quos et quod numquam quia praesentium i', 51, '2023-05-21', 52, 50, 'eveniet illum sed cor', 52, 'necessitatibus error voluptatum ad ullam sint', NULL, NULL, '1683147425_example.pdf', 1),
+(3, 'dignissimos ad adipisci voluptatum corporis', 'officiis natus! Qui, perspiciat', 52, '2023-04-07', 53, 51, 'dignissimos ad adipisc', 53, 'dignissimos ad adipisci voluptatum corporis', NULL, NULL, '1683147517_example.pdf', 1),
+(4, 'sit iste molestiae aliquam omnis explicabo', 'l debitis? Impedit labore accusantium,', 53, '2023-03-15', 54, 52, 'sed corporis nostrum', 54, 'sit iste molestiae aliquam omnis explicabo', NULL, NULL, '1683147615_example.pdf', 1),
+(5, 't amet consectetur adipisicing elit. Unde aut recusandae vo', 'consectetur libero pariatur dolor ipsam dolores a', 54, '2023-01-16', 55, 53, 'consectetur libero par', 55, 't amet consectetur adipisicing elit', NULL, NULL, '1683147722_example.pdf', 0),
+(6, 'olorem, molestiae architecto hic temporibus eaque vitae', 'Nostrum dolorum dignissimos ad adip', 55, '2023-03-20', 56, 54, 'Fuga quos et quod numq', 56, 'olorem, molestiae architecto hic temporibus eaque vitae', NULL, NULL, '1683147812_example.pdf', 1),
+(7, 'perferendis veniam eius maiores facilis', 'Corrupti nobis, eum hic pariatur iste perferendis consequuntur', 56, '2023-03-25', 57, 55, 'Facilis cum eveniet, v', 57, 'Facilis cum eveniet,', NULL, NULL, '1683147933_example.pdf', 1),
+(8, 'sit amet consectetur adipisicing elit. Ipsum voluptatum,', 'sit amet consectetur adipisicing elit', 57, '2023-05-24', 58, 56, 'nissimos quisquam ipsa', 58, 'Ipsum voluptatum,', NULL, NULL, '1683421492_example.pdf', 1),
+(9, 'Corporis l', 'Corporis laudantium error', 58, '2023-05-15', 59, 57, 'Corporis laudantium er', 59, 'Corporis laudantium error perspiciatis odio', NULL, NULL, '1683421707_example.pdf', 1),
+(10, 'ipsam delectus nulla unde tenetur sit necessitatibus', 'Lorem ipsum dolor sit am', 59, '2023-03-26', 60, 58, 'ipsam delectus nulla u', 60, 'ipsam delectus nulla unde', NULL, NULL, '1683421957_example.pdf', 1),
+(11, 'Ratione possimus nobis iusto nihil vero', 'Ratione possimus nobis', 60, '2023-05-17', 61, 59, 'Ratione possimus nobis', 61, 'iusto nihil vero', NULL, NULL, '1683424440_example.pdf', 1),
+(12, 'LOrem ipsum', 'asdasd', 61, '2022-11-09', 62, 60, 'asdasda', 62, 'asdadsa', NULL, NULL, '1683750012_example.pdf', 1),
+(13, 'sadsd', 'asdsad', 67, '', 68, 66, 'adsadsa', 68, 'adsadsa', 'asdsa', 'dasdsa', '1684969361_example.pdf', 1);
 
 -- --------------------------------------------------------
 
@@ -496,7 +526,18 @@ INSERT INTO `entidad` (`id`, `nombre`) VALUES
 (62, 'sed corporis nostrum deserunt itaque atque id dol'),
 (63, 'consectetur libero pariatur dolor ipsam dolores a'),
 (64, 'Nostrum dolorum dignissimos ad adip'),
-(65, 'Corrupti nobis, eum hic pariatur iste perferendis');
+(65, 'Corrupti nobis, eum hic pariatur iste perferendis'),
+(66, 'sit amet consectetur adipisicing elit. Ipsum volup'),
+(67, 'Corporis laudantium error perspiciatis odio'),
+(68, 'ipsam delectus nulla unde tenetur sit necessitatib'),
+(69, 'Ratione possimus nobis iusto nihil vero'),
+(70, 'adssada'),
+(71, 'dassa'),
+(72, 'dassa'),
+(73, 'dassa'),
+(74, 'dassa'),
+(75, 'dassa'),
+(76, 'dassa');
 
 -- --------------------------------------------------------
 
@@ -542,7 +583,18 @@ INSERT INTO `mencionresponsabilidad` (`id`, `autor_id`, `entidad_id`) VALUES
 (53, 63, 62),
 (54, 64, 63),
 (55, 65, 64),
-(56, 66, 65);
+(56, 66, 65),
+(57, 67, 66),
+(58, 68, 67),
+(59, 69, 68),
+(60, 70, 69),
+(61, 71, 70),
+(62, 72, 71),
+(63, 73, 72),
+(64, 74, 73),
+(65, 75, 74),
+(66, 76, 75),
+(67, 77, 76);
 
 -- --------------------------------------------------------
 
@@ -592,7 +644,18 @@ INSERT INTO `notas` (`id`, `objeto`, `doc_vinculado`, `nota_contenido`, `lugar_r
 (52, 'sit iste molestiae aliquam omnis explicabo', ',  sed corporis nostrum deserunt itaque atque id dolorem, molestiae arc', 'l debitis? Impedit labore accusantium,', 'sit iste molestiae aliquam omnis explicabo', 'sit iste molestiae aliquam omnis explicabo', '2023-05-22', '4354', '464'),
 (53, 'consectetur libero pariatur dolor ipsam dolores a', 't amet consectetur adipisicing elit. Unde aut recusandae vo', 'consectetur libero pariatur dolor ipsam dolores a', 'consectetur libero pariatur dolor ipsam dolores a', 't amet consectetur adipisicing elit. Unde aut recusandae vo', '2023-03-17', '4654', '45457'),
 (54, 'Fuga quos et quod numquam quia praesentium impedit quae adipisci', 'Nostrum dolorum dignissimos ad adip', 'Fuga quos et quod numquam quia praesentium impedit quae adipisci', 'Fuga quos et quod numquam quia praesentium impedit quae adipisci', 'olorem, molestiae architecto hic temporibus eaque vitae', '2023-06-04', '878678', '45645'),
-(55, 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'perferendis veniam eius maiores facilis', 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'Facilis cum eveniet, vero doloremque', '2023-05-01', '57665', '4575');
+(55, 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'perferendis veniam eius maiores facilis', 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'eius ipsam blanditiis rem qui repudiandae repellat beatae', 'Facilis cum eveniet, vero doloremque', '2023-05-01', '57665', '4575'),
+(56, 'sit amet consectetur adipisicing elit. Ipsum voluptatum,', 'nissimos quisquam ipsam omnis eaque debitis', 'nissimos quisquam ipsam omnis', 'quisquam ipsam omnis eaque debitis', 'nissimos quisquam ipsam omnis eaque debitis', '2023-05-31', '23', '23324'),
+(57, 'Corporis laudantium error perspiciatis odio', 'Corporis laudantium error perspiciatis odio', 'Corporis laudantium error perspiciatis odio', 'Corporis laudantium error perspiciatis odio', 'Corporis laudantium error perspiciatis odio', '2023-05-23', '45454545', '346436'),
+(58, 'Lorem ipsum dolor sit amet consectetur', 'ipsam delectus nulla unde tenetur sit necessitatibus', 'Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor sit amet consectetur', '2023-02-09', '235235', '242432'),
+(59, 'Ratione possimus nobis iusto nihil vero', 'Ratione possimus nobis', 'Ratione possimus nobis iusto', 'Ratione possimus nobis iusto nihil vero', 'Ratione possimus nobis iusto nihil vero', '2023-05-29', '36436', '5346'),
+(60, 'asdsada', 'adasda', 'adsasda', 'adsadas', 'asdada', '2023-05-12', '32342', '23432'),
+(61, 'asdsad', 'adasdsa', 'adsa', 'adsad', 'asdasas', '2023-05-18', '4234', '53453'),
+(62, 'asdsad', 'adasdsa', 'adsa', 'adsad', 'asdasas', '2023-05-18', '4234', '53453'),
+(63, 'asdsad', 'adasdsa', 'adsa', 'adsad', 'asdasas', '2023-05-18', '4234', '53453'),
+(64, 'asdsad', 'adasdsa', 'adsa', 'adsad', 'asdasas', '2023-05-18', '4234', '53453'),
+(65, 'asdsad', 'adasdsa', 'adsa', 'adsad', 'asdasas', '2023-05-18', '4234', '53453'),
+(66, 'asdsad', 'adasdsa', 'adsa', 'adsad', 'asdasas', '2023-05-18', '4234', '53453');
 
 -- --------------------------------------------------------
 
@@ -636,7 +699,18 @@ INSERT INTO `ubicacion` (`id`, `carpeta`, `folio`) VALUES
 (54, 'molestiae', 'sed corporis nostru'),
 (55, 'res a', 'libero pariatur dolo'),
 (56, 'gnissimos ad adip', 'Nostrum dolo'),
-(57, 'Facilis cum eveniet,', 'vero doloremque');
+(57, 'Facilis cum eveniet,', 'vero doloremque'),
+(58, 'nissimos', 'debitis'),
+(59, 'Corporis laudantium', 'erspiciatis odio'),
+(60, 'essitatibus', 'ipsam delectus'),
+(61, 's iusto nihil vero', 'Ratione p'),
+(62, 'asdada', 'adsada'),
+(63, 'asdsad', 'adsad'),
+(64, 'asdsad', 'adsad'),
+(65, 'asdsad', 'adsad'),
+(66, 'asdsad', 'adsad'),
+(67, 'asdsad', 'adsad'),
+(68, 'asdsad', 'adsad');
 
 --
 -- Índices para tablas volcadas
@@ -698,43 +772,43 @@ ALTER TABLE `ubicacion`
 -- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT de la tabla `descripfisica`
 --
 ALTER TABLE `descripfisica`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `entidad`
 --
 ALTER TABLE `entidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT de la tabla `mencionresponsabilidad`
 --
 ALTER TABLE `mencionresponsabilidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `notas`
 --
 ALTER TABLE `notas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- Restricciones para tablas volcadas

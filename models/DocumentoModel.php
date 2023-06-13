@@ -300,4 +300,22 @@
             return $resp['response'];
         }
 
+        public function getTitles(){
+            $sentencia = $this->db->query("CALL sp_select_titulos()");
+            $response = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $response;
+        }
+
+
+        public function getDocumentosForTitle($title)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo(?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
     }

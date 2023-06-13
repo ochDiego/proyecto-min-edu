@@ -331,6 +331,23 @@
         {
             require_once 'views/documentos/cerrar.php';
         }
+
+        public function search()
+        {
+            $data['titulo']="Busqueda avanzada";
+            $data['titulos']=$this->documento->getTitles();
+
+            require_once 'views/documentos/search.php';
+        }
+
+        public function resultsOfSearch()
+        {
+            $data["titulo"] = (isset($_POST['titulo'])) ? $_POST['titulo'] : "";
+
+            $data['documentos']=$this->documento->getDocumentosForTitle($data["titulo"]);
+
+            require_once 'views/documentos/resultsOfSearch.php';
+        }
     }
 
     

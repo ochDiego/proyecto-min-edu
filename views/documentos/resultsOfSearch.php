@@ -1,49 +1,36 @@
 <?php require_once 'views/templates/header.php'; ?>
 
-        <?php if(isset($_SESSION['msj'])): ?>
-
-                <script>
-                    Swal.fire({
-                    title: '<?= $_SESSION['msj']; ?>',
-                    icon: 'success'
-                    })
-                </script>
-
-        <?php session_unset(); endif ?>
+    <div class="row my-3">
+        <div class="col-12">
+            <a name="" id="" class="btn btn-primary mb-3" href="index.php?c=Documento&m=search" role="button">Volver</a>
 
 
+            <h2 class="text-left lead fs-4 mb-3">Resultado de la busqueda por:</h2>
 
-        <div class="row my-3">
-            <div class="col-12">
-                <h2 class="text-center lead fs-3"><?= $data['titulo'] ?></h2>
+            <?php if(!empty($data['titulo'])): ?>
 
-                <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"):?>
-                        <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=create" role="button">Nuevo registro</a>
-                <?php endif ?>
+                <p class="mb-3"><strong>Título:</strong> <?= $data['titulo']; ?></p>
 
-                <a name="" id="" class="btn btn-secondary btn-sm" href="index.php?c=Documento&m=search" role="button">Busqueda avanzada</a>
-            </div>
-        </div>
+            <?php endif ?>
 
-       
+            <hr>
 
-        <div class="row my-3">
-            <div class="col-12">
+            <?php if(count($data['documentos']) > 0):?>
 
-                    <div class="table-responsive-sm">
-                        <table class="table table-striped table-bordered shadow-lg table-sm" style="width:100%">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th class="text-center align-middle" scope="col">Título</th>
-                                    <th class="text-center align-middle" scope="col">Expte</th>
-                                    <th class="text-center align-middle" scope="col">Término propuesto</th>
-                                    <th class="text-center align-middle" scope="col">Fecha de suscripción</th>
-                                    <!-- <th class="text-center align-middle" scope="col">Ubicación</th> -->
-                                    <th class="text-center align-middle" scope="col">Autor</th>
-                                    <th class="text-center align-middle" scope="col" style="width: 100;">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+            <div class="table-responsive-sm">
+                <table class="table table-striped table-bordered shadow-lg table-sm" style="width:100%">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th class="text-center align-middle" scope="col">Título</th>
+                            <th class="text-center align-middle" scope="col">Expte</th>
+                            <th class="text-center align-middle" scope="col">Término propuesto</th>
+                            <th class="text-center align-middle" scope="col">Fecha de suscripción</th>
+                            <!-- <th class="text-center align-middle" scope="col">Ubicación</th> -->
+                            <th class="text-center align-middle" scope="col">Autor</th>
+                            <th class="text-center align-middle" scope="col" style="width: 100;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                                 
                                     <?php foreach($data['documentos'] as $documento): ?>
                                         <tr class="">
@@ -90,15 +77,21 @@
                                         </tr>
                                     <?php endforeach ?>
                                 
-                            </tbody>
-                        </table>
-                    </div>
-           
-                
+                    </tbody>
+                </table>
             </div>
+
+            <?php else: ?>
+
+                <div class="py-3">
+                    <p class="text-center lead fs-4">No hay ningún registro coincidente</p>
+                </div>
+
+            <?php endif?>
         </div>
+    </div>
+
+
 
 <?php require_once 'views/templates/footer.php'; ?>
 <script src="js/dataTables.js"></script>
-
-

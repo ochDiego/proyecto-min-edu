@@ -25,71 +25,64 @@
 
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="titulo" class="form-label fw-bold">Tipo:</label>
-                                    <select class="form-select form-select-md" name="titulo" id="titulo">
+                                    <label for="titulo" class="form-label fw-bold">Tipo</label>
+                                    <select class="form-select form-select-sm" name="titulo" id="titulo">
                                         <option value="none" selected disabled hidden>Título</option>
                                         <?php foreach($data['titulos'] as $titulo): ?>
-                                        <option value="<?= $titulo['titulo']; ?>"><?= $titulo['titulo']; ?></option>
+                                            <option value="<?= $titulo['nombre']; ?>"><?= $titulo['nombre']; ?></option>
                                         <?php endforeach ?>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-6">
-                                
+                                 
+                                <div class="mb-3">
+                                    <label for="titulo" class="form-label fw-bold">Ministerio</label>
+                                    <select class="form-select form-select-sm" name="titulo" id="titulo">
+                                        <option value="none" selected disabled hidden>Ministerios</option>
+                                        <?php foreach($data['ministerios'] as $ministerio): ?>
+                                            <option value="<?= $ministerio['nombre']; ?>"><?= $ministerio['nombre']; ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                              
                             </div>
 
                             <div class="col-12">
-                                <div class="row">
-                                <label for="" class="form-label fw-bold">Fecha:</label>
-
-                                    <div class="col-2">
+                                <div class="row">                          
+                                    <div class="col-3">
                                         <div class="mb-3">
-                                            <select class="form-select form-select-md" name="dia" id="">
-                                                <option value="none" selected disabled hidden>Día</option>
-                                                <?php for($i=1; $i <= 31; $i++):?>
-                                                    <option value="<?= $i; ?>"><?= $i;?></option>
+                                            <label for="" class="form-label fw-bold">Fecha</label> 
+                                            <select class="form-select form-select-sm" name="anio" id="">
+                                                <option value="none" selected disabled hidden>Año</option>
+                                                <?php for($i=2022; $i >= 1995; $i--):?>
+                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
                                                 <?php endfor ?>
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div class="col-2">
+                                    <div class="col-3">
                                         <div class="mb-3">
-
-                                            <?php 
-                                                $meses["01"]="Enero";
-                                                $meses["02"]="Febrero";
-                                                $meses["03"]="Marzo";
-                                                $meses["04"]="Abril";
-                                                $meses["05"]="Mayo";
-                                                $meses["06"]="Junio";
-                                                $meses["07"]="Julio";
-                                                $meses["08"]="Agosto";
-                                                $meses["09"]="Septiembre";
-                                                $meses["10"]="Octubre";
-                                                $meses["11"]="Noviembre";
-                                                $meses["12"]="Diciembre";
-                                            
-                                            ?>
-
-
-                                            <select class="form-select form-select-md" name="mes" id="">
-                                                <option value="none" selected disabled hidden>Mes</option>
-                                                <?php foreach($meses as $key => $mes): ?>
-                                                    <option value="<?= $key; ?>"><?= $mes; ?></option>
+                                            <label for="titulo" class="form-label fw-bold">Vigencia</label>
+                                            <select class="form-select form-select-sm" name="titulo" id="titulo">
+                                                <option value="none" selected disabled hidden>Estado</option>
+                                                <?php foreach($data['vigencias'] as $vigencia): ?>
+                                                    <option value="<?= $vigencia['nombre']; ?>"><?= $vigencia['nombre']; ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div class="col-2">
+                                    <div class="col-6">
                                         <div class="mb-3">
-                                            <select class="form-select form-select-md" name="anio" id="">
-                                                <option value="none" selected disabled hidden>Año</option>
-                                                <?php for($i=2023; $i >= 1995; $i--):?>
-                                                <option value="<?= $i; ?>"><?= $i; ?></option>
-                                                <?php endfor ?>
+                                            <label for="titulo" class="form-label fw-bold">Documento</label>
+                                            <select class="form-select form-select-sm" name="titulo" id="titulo">
+                                                <option value="none" selected disabled hidden>Tipo de documento</option>
+                                                <?php foreach($data['tipoDocumentos'] as $tipoDocumento): ?>
+                                                    <option value="<?= $tipoDocumento['nombre']; ?>"><?= $tipoDocumento['nombre']; ?></option>
+                                                <?php endforeach ?>
                                             </select>
                                         </div>
                                     </div>
@@ -119,9 +112,33 @@
                             -->
 
 
-                            <div class="col-3 d-grid mt-3">
-                                <button type="submit" class="btn btn-success">Buscar</button>
+                          <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="titulo" class="form-label fw-bold">Firmante</label>
+                                        <select class="form-select form-select-sm" name="titulo" id="titulo">
+                                            <option value="none" selected disabled hidden>Nombre y apellido</option>
+                                            <?php foreach($data['autores'] as $autor): ?>
+                                                <option value="<?= $autor['firmante']; ?>"><?= $autor['firmante']; ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                                
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <a name="" id="" class="btn btn-danger mt-4 px-5" href="index.php?c=Documento&m=search" role="button">Cancelar</a>
+
+                                            <button type="submit" class="btn btn-success mt-4 px-5"> <i class="fa fa-search"></i> Buscar</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
+                          </div>
                         
                        
                         </form>
@@ -137,5 +154,8 @@
             </div>
         </div>
 
+
+       
+         
 <?php require_once 'views/templates/footer.php'; ?>
 

@@ -336,6 +336,10 @@
         {
             $data['titulo']="Busqueda avanzada";
             $data['titulos']=$this->documento->getTitles();
+            $data['ministerios']=$this->documento->getMinisterio();
+            $data['vigencias']=$this->documento->getVigencia();
+            $data['tipoDocumentos']=$this->documento->getTipoDocumento();
+            $data['autores']=$this->documento->getAutor();
 
             require_once 'views/documentos/search.php';
         }

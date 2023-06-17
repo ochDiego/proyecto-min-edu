@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2023 a las 01:00:42
+-- Tiempo de generación: 17-06-2023 a las 00:11:28
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -226,6 +226,28 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_documentos` ()  BEGIN
     INNER JOIN entidad e
     ON m.entidad_id = e.id
     WHERE d.status = 1;
+        END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_documentos_titulo` (IN `_titulo` VARCHAR(255))  BEGIN
+        	SELECT d.id AS idDocumento, f.id AS idDescripFisica, n.id AS idNotas, u.id AS idUbicacion, a.id AS idAutor, e.id AS idEntidad, d.titulo, d.expediente, d.fechaSuscripcion, CONCAT(a.nombre,' ',a.apellido) AS autor, CONCAT_WS(' ', f.formato, f.numHojas, f.numPag, f.otros) AS descripFisica, CONCAT_WS(' ', n.doc_vinculado, n.lugar_redaccion, n.naturaleza_alcance_forma, n.nota_contenido,n.numero_decreto, n.objeto, n.aprobado_ley, n.vigencia) AS nota, d.terminoPropuesto, CONCAT_WS(' ', u.carpeta, u.folio) AS ubicacion, autorInstitucional, terminoControlado, d.archivoAdjunto, d.responsable 
+    FROM documento d 
+    INNER JOIN descripfisica f 
+    ON d.descripfisica_id = f.id 
+    INNER JOIN notas n 
+    ON d.notas_id = n.id 
+    INNER JOIN ubicacion u 
+    ON d.ubicacion_id = u.id 
+    INNER JOIN mencionresponsabilidad m 
+    ON d.mencionresponsabilidad_id = m.id
+    INNER JOIN autor a 
+    ON m.autor_id = a.id
+    INNER JOIN entidad e
+    ON m.entidad_id = e.id
+    WHERE d.titulo = _titulo AND d.status = 1;
+        END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_titulos` ()  BEGIN
+        	SELECT DISTINCT titulo FROM documento WHERE status = 1 ORDER BY titulo ASC;
         END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_archivo` (`_id` INT, `_archivo` VARCHAR(255))  BEGIN

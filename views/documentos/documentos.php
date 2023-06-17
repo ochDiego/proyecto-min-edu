@@ -35,9 +35,9 @@
                             <thead class="bg-dark text-white">
                                 <tr>
                                     <th class="text-center align-middle" scope="col">Título</th>
-                                    <th class="text-center align-middle" scope="col">Expte</th>
-                                    <th class="text-center align-middle" scope="col">Término propuesto</th>
+                                    <th class="text-center align-middle" scope="col">Ministerio</th>
                                     <th class="text-center align-middle" scope="col">Fecha de suscripción</th>
+                                    <th class="text-center align-middle" scope="col">Vigencia</th>
                                     <!-- <th class="text-center align-middle" scope="col">Ubicación</th> -->
                                     <th class="text-center align-middle" scope="col">Autor</th>
                                     <th class="text-center align-middle" scope="col" style="width: 100;">Acciones</th>
@@ -48,9 +48,10 @@
                                     <?php foreach($data['documentos'] as $documento): ?>
                                         <tr class="">
                                             <td class="text-center align-middle" scope="row"><small><?= $documento['titulo']; ?></small></td>
-                                            <td class="text-center align-middle"><small><?= $documento['expediente']; ?></small></td>
-                                            <td class="text-center align-middle"><small><?= $documento['terminoPropuesto']; ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['ministerio']; ?></small></td>
                                             <td class="text-center align-middle"><small><?= modificarFecha($documento['fechaSuscripcion']); ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['vigencia']; ?></small></td>
+                                            
                                             <!-- <td class="text-center"><small><?php //$documento['ubicacion']; ?></small></td> -->
                                             <td class="text-center align-middle"><small><?= $documento['autor']; ?></small></td>
                                             <td class="text-center align-middle">

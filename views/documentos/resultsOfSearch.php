@@ -5,7 +5,7 @@
             <a name="" id="" class="btn btn-primary mb-3" href="index.php?c=Documento&m=search" role="button">Volver</a>
 
 
-            <h2 class="text-left lead fs-4 mb-3">Resultado de la busqueda por:</h2>
+            <h2 class="text-left lead fs-4 mb-3">Resultados de la busqueda por</h2>
 
             <?php if(!empty($data['titulo'])): ?>
 

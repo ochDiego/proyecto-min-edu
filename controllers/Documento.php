@@ -347,10 +347,59 @@
         public function resultsOfSearch()
         {
             $data["titulo"] = (isset($_POST['titulo'])) ? $_POST['titulo'] : "";
+            $data["ministerio"] = (isset($_POST['ministerio'])) ? $_POST['ministerio'] : "";
+            $data["fecha"] = (isset($_POST['fecha'])) ? $_POST['fecha'] : "";
+            $data["vigencia"] = (isset($_POST['vigencia'])) ? $_POST['vigencia'] : "";
+            $data["tipoDocumento"] = (isset($_POST['tipoDocumento'])) ? $_POST['tipoDocumento'] : "";
+            $data["autor"] = (isset($_POST['autor'])) ? $_POST['autor'] : "";
 
-            $data['documentos']=$this->documento->getDocumentosForTitle($data["titulo"]);
+            if(!empty($data["titulo"])){
+                $data['documentos']=$this->documento->getDocumentosForTitle($data["titulo"]);
 
-            require_once 'views/documentos/resultsOfSearch.php';
+                require_once 'views/documentos/resultsOfSearch.php';
+            }else{
+                if(!empty($data["fecha"])){
+                    $data['documentos']=$this->documento->getDocumentosForFecha($data["fecha"]);
+                    
+                    require_once 'views/documentos/resultsOfSearch.php';
+                }else{
+                    if(!empty($data["ministerio"])){
+                        $data['documentos']=$this->documento->getDocumentosForMinisterio($data["ministerio"]);
+                        
+                        require_once 'views/documentos/resultsOfSearch.php';
+                    }else{
+                        if(!empty($data["vigencia"])){
+                            $data['documentos']=$this->documento->getDocumentosForVigencia($data["vigencia"]);
+                            
+                            require_once 'views/documentos/resultsOfSearch.php';
+                        }else{
+                            if(!empty($data["tipoDocumento"])){
+                                $data['documentos']=$this->documento->getDocumentosForType($data["tipoDocumento"]);
+                                
+                                require_once 'views/documentos/resultsOfSearch.php';
+                            }else{
+                                if(isset($data["autor"])){
+                                    $data['documentos']=$this->documento->getDocumentosForAutor($data["autor"]);
+                                    
+                                    require_once 'views/documentos/resultsOfSearch.php';
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+
+            
+
+
+            
+
+            
+
+            
+
+
         }
     }
 

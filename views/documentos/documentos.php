@@ -36,10 +36,11 @@
                                 <tr>
                                     <th class="text-center align-middle" scope="col">Título</th>
                                     <th class="text-center align-middle" scope="col">Ministerio</th>
+                                    <th class="text-center align-middle" scope="col">Institución</th>
+                                    <th class="text-center align-middle" scope="col">Firmante</th>
                                     <th class="text-center align-middle" scope="col">Fecha de suscripción</th>
                                     <th class="text-center align-middle" scope="col">Vigencia</th>
-                                    <!-- <th class="text-center align-middle" scope="col">Ubicación</th> -->
-                                    <th class="text-center align-middle" scope="col">Autor</th>
+                                    <th class="text-center align-middle" scope="col">Tipo de documento</th>
                                     <th class="text-center align-middle" scope="col" style="width: 100;">Acciones</th>
                                 </tr>
                             </thead>
@@ -49,11 +50,12 @@
                                         <tr class="">
                                             <td class="text-center align-middle" scope="row"><small><?= $documento['titulo']; ?></small></td>
                                             <td class="text-center align-middle"><small><?= $documento['ministerio']; ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['entidad']; ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['autor']; ?></small></td>
                                             <td class="text-center align-middle"><small><?= modificarFecha($documento['fechaSuscripcion']); ?></small></td>
                                             <td class="text-center align-middle"><small><?= $documento['vigencia']; ?></small></td>
                                             
-                                            <!-- <td class="text-center"><small><?php //$documento['ubicacion']; ?></small></td> -->
-                                            <td class="text-center align-middle"><small><?= $documento['autor']; ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['tipoDocumento']; ?></small></td> 
                                             <td class="text-center align-middle">
                                                 
                                                 <a name="" id="" class="btn btn-primary btn-sm d-block" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver más</a>

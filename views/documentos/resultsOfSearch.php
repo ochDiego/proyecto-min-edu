@@ -13,6 +13,36 @@
 
             <?php endif ?>
 
+            <?php if(!empty($data['ministerio'])): ?>
+
+                <p class="mb-3"><strong>Ministerio:</strong> <?= $data['ministerio']; ?></p>
+
+            <?php endif ?>
+
+            <?php if(!empty($data['fecha'])): ?>
+
+                <p class="mb-3"><strong>Año:</strong> <?= $data['fecha']; ?></p>
+
+            <?php endif ?>
+
+            <?php if(!empty($data['vigencia'])): ?>
+
+                <p class="mb-3"><strong>Vigencia:</strong> <?= $data['vigencia']; ?></p>
+
+            <?php endif ?>
+
+            <?php if(!empty($data['tipoDocumento'])): ?>
+
+                <p class="mb-3"><strong>Tipo de documento:</strong> <?= $data['tipoDocumento']; ?></p>
+
+            <?php endif ?>
+
+            <?php if(!empty($data['autor'])): ?>
+
+                <p class="mb-3"><strong>Firmante:</strong> <?= $data['autor']; ?></p>
+
+            <?php endif ?>
+
             <hr>
 
             <?php if(count($data['documentos']) > 0):?>
@@ -22,11 +52,12 @@
                     <thead class="bg-dark text-white">
                         <tr>
                             <th class="text-center align-middle" scope="col">Título</th>
-                            <th class="text-center align-middle" scope="col">Expte</th>
-                            <th class="text-center align-middle" scope="col">Término propuesto</th>
+                            <th class="text-center align-middle" scope="col">Ministerio</th>
+                            <th class="text-center align-middle" scope="col">Institución</th>
+                            <th class="text-center align-middle" scope="col">Firmante</th>
                             <th class="text-center align-middle" scope="col">Fecha de suscripción</th>
-                            <!-- <th class="text-center align-middle" scope="col">Ubicación</th> -->
-                            <th class="text-center align-middle" scope="col">Autor</th>
+                            <th class="text-center align-middle" scope="col">Vigencia</th>
+                            <th class="text-center align-middle" scope="col">Tipo de documento</th>
                             <th class="text-center align-middle" scope="col" style="width: 100;">Acciones</th>
                         </tr>
                     </thead>
@@ -35,11 +66,12 @@
                                     <?php foreach($data['documentos'] as $documento): ?>
                                         <tr class="">
                                             <td class="text-center align-middle" scope="row"><small><?= $documento['titulo']; ?></small></td>
-                                            <td class="text-center align-middle"><small><?= $documento['expediente']; ?></small></td>
-                                            <td class="text-center align-middle"><small><?= $documento['terminoPropuesto']; ?></small></td>
-                                            <td class="text-center align-middle"><small><?= modificarFecha($documento['fechaSuscripcion']); ?></small></td>
-                                            <!-- <td class="text-center"><small><?php //$documento['ubicacion']; ?></small></td> -->
+                                            <td class="text-center align-middle"><small><?= $documento['ministerio']; ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['entidad']; ?></small></td>
                                             <td class="text-center align-middle"><small><?= $documento['autor']; ?></small></td>
+                                            <td class="text-center align-middle"><small><?= modificarFecha($documento['fechaSuscripcion']); ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['vigencia']; ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['tipoDocumento']; ?></small></td>
                                             <td class="text-center align-middle">
                                                 
                                                 <a name="" id="" class="btn btn-primary btn-sm d-block" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver más</a>

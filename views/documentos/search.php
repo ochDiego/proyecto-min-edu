@@ -21,7 +21,7 @@
                         <span class="fw-bold fs-4"><?= $data['titulo'] ?></span>
                     </div>
                     <div class="card-body">
-                        <form action="index.php?c=Documento&m=resultsOfSearch" method="post" autocomplete="off" class="row">
+                        <form action="index.php?c=Documento&m=resultsOfSearch" method="POST" autocomplete="off" class="row">
 
                             <div class="col-6">
                                 <div class="mb-3">
@@ -38,8 +38,8 @@
                             <div class="col-6">
                                  
                                 <div class="mb-3">
-                                    <label for="titulo" class="form-label fw-bold">Ministerio</label>
-                                    <select class="form-select form-select-sm" name="titulo" id="titulo">
+                                    <label for="ministerio" class="form-label fw-bold">Ministerio</label>
+                                    <select class="form-select form-select-sm" name="ministerio" id="ministerio">
                                         <option value="none" selected disabled hidden>Ministerios</option>
                                         <?php foreach($data['ministerios'] as $ministerio): ?>
                                             <option value="<?= $ministerio['nombre']; ?>"><?= $ministerio['nombre']; ?></option>
@@ -53,10 +53,10 @@
                                 <div class="row">                          
                                     <div class="col-3">
                                         <div class="mb-3">
-                                            <label for="" class="form-label fw-bold">Fecha</label> 
-                                            <select class="form-select form-select-sm" name="anio" id="">
+                                            <label for="fecha" class="form-label fw-bold">Fecha</label> 
+                                            <select class="form-select form-select-sm" name="fecha" id="fecha">
                                                 <option value="none" selected disabled hidden>Año</option>
-                                                <?php for($i=2022; $i >= 1995; $i--):?>
+                                                <?php for($i=2023; $i >= 1995; $i--):?>
                                                     <option value="<?= $i; ?>"><?= $i; ?></option>
                                                 <?php endfor ?>
                                             </select>
@@ -65,8 +65,8 @@
 
                                     <div class="col-3">
                                         <div class="mb-3">
-                                            <label for="titulo" class="form-label fw-bold">Vigencia</label>
-                                            <select class="form-select form-select-sm" name="titulo" id="titulo">
+                                            <label for="vigencia" class="form-label fw-bold">Vigencia</label>
+                                            <select class="form-select form-select-sm" name="vigencia" id="vigencia">
                                                 <option value="none" selected disabled hidden>Estado</option>
                                                 <?php foreach($data['vigencias'] as $vigencia): ?>
                                                     <option value="<?= $vigencia['nombre']; ?>"><?= $vigencia['nombre']; ?></option>
@@ -77,8 +77,8 @@
 
                                     <div class="col-6">
                                         <div class="mb-3">
-                                            <label for="titulo" class="form-label fw-bold">Documento</label>
-                                            <select class="form-select form-select-sm" name="titulo" id="titulo">
+                                            <label for="tipoDocumento" class="form-label fw-bold">Documento</label>
+                                            <select class="form-select form-select-sm" name="tipoDocumento" id="tipoDocumento">
                                                 <option value="none" selected disabled hidden>Tipo de documento</option>
                                                 <?php foreach($data['tipoDocumentos'] as $tipoDocumento): ?>
                                                     <option value="<?= $tipoDocumento['nombre']; ?>"><?= $tipoDocumento['nombre']; ?></option>
@@ -89,38 +89,16 @@
 
                                 </div>
                             </div>
-
-                        
-                            <!--  <div class="col-12">
-                                    <div class="row">
-                                        <span class="fw-bold fs-5 my-2">Vigencia</span>
-                            
-
-                                        <div class="col-6">
-                                            <div class="mb-3">
-                                                <label for="" class="form-label fw-bold">Otro:</label>
-                                                <select class="form-select form-select-md" name="" id="">
-                                                    <option selected>Año</option>
-                                                    <option value="">New Delhi</option>
-                                                    <option value="">Istanbul</option>
-                                                    <option value="">Jakarta</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            -->
-
-
+   
                           <div class="col-12">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label for="titulo" class="form-label fw-bold">Firmante</label>
-                                        <select class="form-select form-select-sm" name="titulo" id="titulo">
+                                        <label for="autor" class="form-label fw-bold">Firmante</label>
+                                        <select class="form-select form-select-sm" name="autor" id="autor">
                                             <option value="none" selected disabled hidden>Nombre y apellido</option>
                                             <?php foreach($data['autores'] as $autor): ?>
-                                                <option value="<?= $autor['firmante']; ?>"><?= $autor['firmante']; ?></option>
+                                                <option value="<?= $autor['id']; ?>"><?= $autor['firmante']; ?></option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>
@@ -154,6 +132,7 @@
             </div>
         </div>
 
+        <!-- HAY QUE AGREGAR EL AUTOR Y LA ENTIDAD A LA TABLA DOCUMENTO -->
 
        
          

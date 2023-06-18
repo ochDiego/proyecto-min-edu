@@ -396,4 +396,426 @@
             return $response;
         }
 
+        public function getDocumentosForTituloMinisterio($title,$ministerio)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio(?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloFecha($title,$fecha)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_fecha(?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$fecha);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloVigencia($title,$vigencia)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_vigencia(?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$vigencia);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloTipoDoc($title,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_tipoDoc(?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloAutor($title,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_autor(?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        
+        public function getDocumentosForTituloMinisterioFecha($title,$ministerio,$fecha)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_fecha(?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$fecha);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioVigencia($title,$ministerio,$vigencia)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_vigencia(?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$vigencia);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioTipoDoc($title,$ministerio,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_tipoDoc(?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioAutor($title,$ministerio,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_autor(?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioFechaVigencia($title,$ministerio,$fecha,$vigencia)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_fecha_vigencia(?,?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$fecha);
+            $sentencia->bindParam(4,$vigencia);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioFechaTipoDoc($title,$ministerio,$fecha,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_fecha_tipoDoc(?,?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$fecha);
+            $sentencia->bindParam(4,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioFechaAutor($title,$ministerio,$fecha,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_fecha_autor(?,?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$fecha);
+            $sentencia->bindParam(4,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioFechaVigenciaTipoDoc($title,$ministerio,$fecha,$vigencia,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_fecha_vigencia_tipoDoc(?,?,?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$fecha);
+            $sentencia->bindParam(4,$vigencia);
+            $sentencia->bindParam(5,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioFechaVigenciaAutor($title,$ministerio,$fecha,$vigencia,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_ministerio_fecha_vigencia_autor(?,?,?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$fecha);
+            $sentencia->bindParam(4,$vigencia);
+            $sentencia->bindParam(5,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTituloMinisterioFechaVigenciaTipoDocAutor($title,$ministerio,$fecha,$vigencia,$tipo,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_titulo_min_fecha_vigencia_tipoDoc_autor(?,?,?,?,?,?)");
+            $sentencia->bindParam(1,$title);
+            $sentencia->bindParam(2,$ministerio);
+            $sentencia->bindParam(3,$fecha);
+            $sentencia->bindParam(4,$vigencia);
+            $sentencia->bindParam(5,$tipo);
+            $sentencia->bindParam(6,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioFecha($ministerio,$fecha)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_fecha(?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$fecha);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioVigencia($ministerio,$vigencia)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_vigencia(?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$vigencia);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioTipoDoc($ministerio,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_tipoDoc(?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioAutor($ministerio,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_autor(?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        
+        public function getDocumentosForMinisterioFechaVigencia($ministerio,$fecha,$vigencia)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_fecha_vigencia(?,?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$fecha);
+            $sentencia->bindParam(3,$vigencia);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioFechaTipoDoc($ministerio,$fecha,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_fecha_tipoDoc(?,?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$fecha);
+            $sentencia->bindParam(3,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioFechaAutor($ministerio,$fecha,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_fecha_autor(?,?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$fecha);
+            $sentencia->bindParam(3,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioFechaVigenciaTipoDoc($ministerio,$fecha,$vigencia,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_fecha_vigencia_tipoDoc(?,?,?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$fecha);
+            $sentencia->bindParam(3,$vigencia);
+            $sentencia->bindParam(4,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioFechaVigenciaAutor($ministerio,$fecha,$vigencia,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_fecha_vigencia_autor(?,?,?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$fecha);
+            $sentencia->bindParam(3,$vigencia);
+            $sentencia->bindParam(4,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForMinisterioFechaVigenciaTipoDocAutor($ministerio,$fecha,$vigencia,$tipo,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_ministerio_fecha_vigencia_tipoDoc_autor(?,?,?,?,?)");
+            $sentencia->bindParam(1,$ministerio);
+            $sentencia->bindParam(2,$fecha);
+            $sentencia->bindParam(3,$vigencia);
+            $sentencia->bindParam(4,$tipo);
+            $sentencia->bindParam(5,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForFechaVigencia($fecha,$vigencia)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_fecha_vigencia(?,?)");
+            $sentencia->bindParam(1,$fecha);
+            $sentencia->bindParam(2,$vigencia);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForFechaTipoDoc($fecha,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_fecha_tipoDoc(?,?)");
+            $sentencia->bindParam(1,$fecha);
+            $sentencia->bindParam(2,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForFechaAutor($fecha,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_fecha_autor(?,?)");
+            $sentencia->bindParam(1,$fecha);
+            $sentencia->bindParam(2,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForFechaVigenciaTipoDoc($fecha,$vigencia,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_fecha_vigencia_tipoDoc(?,?,?)");
+            $sentencia->bindParam(1,$fecha);
+            $sentencia->bindParam(2,$vigencia);
+            $sentencia->bindParam(3,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForFechaVigenciaAutor($fecha,$vigencia,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_fecha_vigencia_autor(?,?,?)");
+            $sentencia->bindParam(1,$fecha);
+            $sentencia->bindParam(2,$vigencia);
+            $sentencia->bindParam(3,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForFechaVigenciaTipoDocAutor($fecha,$vigencia,$tipo,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_fecha_vigencia_tipoDoc_autor(?,?,?,?)");
+            $sentencia->bindParam(1,$fecha);
+            $sentencia->bindParam(2,$vigencia);
+            $sentencia->bindParam(3,$tipo);
+            $sentencia->bindParam(4,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForVigenciaTipDoc($vigencia,$tipo)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_vigencia_tipoDoc(?,?)");
+            $sentencia->bindParam(1,$vigencia);
+            $sentencia->bindParam(2,$tipo);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForVigenciaAutor($vigencia,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_vigencia_autor(?,?)");
+            $sentencia->bindParam(1,$vigencia);
+            $sentencia->bindParam(2,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForVigenciaTipoDocAutor($vigencia,$tipo,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_vigencia_tipoDoc_autor(?,?,?)");
+            $sentencia->bindParam(1,$vigencia);
+            $sentencia->bindParam(2,$tipo);
+            $sentencia->bindParam(3,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
+        public function getDocumentosForTipoDocAutor($tipo,$autor)
+        {
+            $sentencia=$this->db->prepare("CALL sp_select_documentos_tipoDoc_autor(?,?)");
+            $sentencia->bindParam(1,$tipo);
+            $sentencia->bindParam(2,$autor);
+            $sentencia->execute();
+            $response=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+            return $response;
+        }
+
     }

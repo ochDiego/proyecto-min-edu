@@ -338,7 +338,7 @@
             $data['titulos']=$this->documento->getTitles();
             $data['ministerios']=$this->documento->getMinisterio();
             $data['vigencias']=$this->documento->getVigencia();
-            $data['tipoDocumentos']=$this->documento->getTipoDocumento();
+            $data['instituciones']=$this->documento->getInstitucion();
             $data['autores']=$this->documento->getAutor();
 
             require_once 'views/documentos/search.php';
@@ -350,7 +350,7 @@
             $data["ministerio"] = (isset($_POST['ministerio'])) ? $_POST['ministerio'] : "";
             $data["fecha"] = (isset($_POST['fecha'])) ? $_POST['fecha'] : "";
             $data["vigencia"] = (isset($_POST['vigencia'])) ? $_POST['vigencia'] : "";
-            $data["tipoDocumento"] = (isset($_POST['tipoDocumento'])) ? $_POST['tipoDocumento'] : "";
+            $data["institucion"] = (isset($_POST["institucion"])) ? $_POST["institucion"] : "";
             $data["autor"] = (isset($_POST['autor'])) ? $_POST['autor'] : "";
 
             if(!empty($data["titulo"])){
@@ -373,15 +373,293 @@
                             
                             require_once 'views/documentos/resultsOfSearch.php';
                         }else{
-                            if(!empty($data["tipoDocumento"])){
-                                $data['documentos']=$this->documento->getDocumentosForType($data["tipoDocumento"]);
+                            if(!empty($data["institucion"])){
+                                $data['documentos']=$this->documento->getDocumentosForInstitucion($data["institucion"]);
                                 
                                 require_once 'views/documentos/resultsOfSearch.php';
                             }else{
                                 if(isset($data["autor"])){
                                     $data['documentos']=$this->documento->getDocumentosForAutor($data["autor"]);
+
+                                    $data["autor"] = $this->documento->getNameAutor($data["autor"]);
                                     
                                     require_once 'views/documentos/resultsOfSearch.php';
+                                }else{
+                                    if(!empty($data["titulo"]) && !empty($data["ministerio"])){
+                                        $data['documentos']=$this->documento->getDocumentosForTituloMinisterio($data["titulo"],$data["ministerio"]);
+                                    
+                                        require_once 'views/documentos/resultsOfSearch.php';
+
+                                    }else{
+                                        if(!empty($data["titulo"]) && !empty($data["fecha"])){
+                                            $data['documentos']=$this->documento->getDocumentosForTituloFecha($data["titulo"],$data["fecha"]);
+                                        
+                                            require_once 'views/documentos/resultsOfSearch.php';
+    
+                                        }else{
+                                            if(!empty($data["titulo"]) && !empty($data["vigencia"])){
+                                                $data['documentos']=$this->documento->getDocumentosForTituloVigencia($data["titulo"],$data["vigencia"]);
+                                            
+                                                require_once 'views/documentos/resultsOfSearch.php';
+        
+                                            }else{
+                                                if(!empty($data["titulo"]) && !empty($data["institucion"])){
+                                                    $data['documentos']=$this->documento->getDocumentosForTituloInstitucion($data["titulo"],$data["institucion"]);
+                                                
+                                                    require_once 'views/documentos/resultsOfSearch.php';
+            
+                                                }else{
+                                                    if(!empty($data["titulo"]) && !empty($data["autor"])){
+                                                        $data['documentos']=$this->documento->getDocumentosForTituloAutor($data["titulo"],$data["autor"]);
+
+                                                       
+                                                        $data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                    
+                                                        require_once 'views/documentos/resultsOfSearch.php';
+                
+                                                    }else{
+                                                        if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["fecha"])){
+                                                            $data['documentos']=$this->documento->getDocumentosForTituloMinisterioFecha($data["titulo"],$data["ministerio"],$data["fecha"]);
+                                                        
+                                                            require_once 'views/documentos/resultsOfSearch.php';
+                    
+                                                        }else{
+                                                            if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["vigencia"])){
+                                                                $data['documentos']=$this->documento->getDocumentosForTituloMinisterioVigencia($data["titulo"],$data["ministerio"],$data["vigencia"]);
+                                                            
+                                                                require_once 'views/documentos/resultsOfSearch.php';
+                        
+                                                            }else{
+                                                                if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["institucion"])){
+                                                                    $data['documentos']=$this->documento->getDocumentosForTituloMinisterioInstitucion($data["titulo"],$data["ministerio"],$data["institucion"]);
+                                                                
+                                                                    require_once 'views/documentos/resultsOfSearch.php';
+                            
+                                                                }else{
+                                                                    if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["autor"])){
+                                                                        $data['documentos']=$this->documento->getDocumentosForTituloMinisterioAutor($data["titulo"],$data["ministerio"],$data["autor"]);
+
+                                                                        //$data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                                    
+                                                                        require_once 'views/documentos/resultsOfSearch.php';
+                                
+                                                                    }else{
+                                                                        if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["vigencia"])){
+                                                                            $data['documentos']=$this->documento->getDocumentosForTituloMinisterioFechaVigencia($data["titulo"],$data["ministerio"],$data["fecha"],$data["vigencia"]);
+                                                                        
+                                                                            require_once 'views/documentos/resultsOfSearch.php';
+                                    
+                                                                        }else{
+                                                                            if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["institucion"])){
+                                                                                $data['documentos']=$this->documento->getDocumentosForTituloMinisterioFechaInstitucion($data["titulo"],$data["ministerio"],$data["fecha"],$data["institucion"]);
+                                                                            
+                                                                                require_once 'views/documentos/resultsOfSearch.php';
+                                        
+                                                                            }else{
+                                                                                if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["autor"])){
+                                                                                    $data['documentos']=$this->documento->getDocumentosForTituloMinisterioFechaAutor($data["titulo"],$data["ministerio"],$data["fecha"],$data["autor"]);
+
+                                                                                   // $data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                                                
+                                                                                    require_once 'views/documentos/resultsOfSearch.php';
+                                            
+                                                                                }else{
+                                                                                    if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["institucion"])){
+                                                                                        $data['documentos']=$this->documento->getDocumentosForTituloMinisterioFechaVigenciaInstitucion($data["titulo"],$data["ministerio"],$data["fecha"],$data["vigencia"],$data["institucion"]);
+                                                                                    
+                                                                                        require_once 'views/documentos/resultsOfSearch.php';
+                                                
+                                                                                    }else{
+                                                                                        if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["autor"])){
+                                                                                            $data['documentos']=$this->documento->getDocumentosForTituloMinisterioFechaVigenciaAutor($data["titulo"],$data["ministerio"],$data["fecha"],$data["vigencia"],$data["autor"]);
+
+                                                                                            //$data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                                                        
+                                                                                            require_once 'views/documentos/resultsOfSearch.php';
+                                                    
+                                                                                        }else{
+                                                                                            if(!empty($data["titulo"]) && !empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["institucion"]) && !empty($data["autor"])){
+                                                                                                $data['documentos']=$this->documento->getDocumentosForTituloMinisterioFechaVigenciaInstitucionAutor($data["titulo"],$data["ministerio"],$data["fecha"],$data["vigencia"],$data["institucion"],$data["autor"]);
+
+                                                                                                //$data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                                                            
+                                                                                                require_once 'views/documentos/resultsOfSearch.php';
+                                                        
+                                                                                            }else{
+            if(!empty($data["ministerio"]) && !empty($data["fecha"])){
+                $data['documentos']=$this->documento->getDocumentosForMinisterioFecha($data["ministerio"],$data["fecha"]);
+                                                                                                
+                require_once 'views/documentos/resultsOfSearch.php';
+                                                            
+            }else{
+                if(!empty($data["ministerio"]) && !empty($data["vigencia"])){
+                    $data['documentos']=$this->documento->getDocumentosForMinisterioVigencia($data["ministerio"],$data["vigencia"]);
+                                                                                                    
+                    require_once 'views/documentos/resultsOfSearch.php';
+                                                                
+                }else{
+                    if(!empty($data["ministerio"]) && !empty($data["institucion"])){
+                        $data['documentos']=$this->documento->getDocumentosForMinisterioInstitucion($data["ministerio"],$data["institucion"]);
+                                                                                                        
+                        require_once 'views/documentos/resultsOfSearch.php';
+                                                                    
+                    }else{
+                        if(!empty($data["ministerio"]) && !empty($data["autor"])){
+                            $data['documentos']=$this->documento->getDocumentosForMinisterioAutor($data["ministerio"],$data["autor"]);
+
+                           // $data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                                                                            
+                            require_once 'views/documentos/resultsOfSearch.php';
+                                                                        
+                        }else{
+                            if(!empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["vigencia"])){
+                                $data['documentos']=$this->documento->getDocumentosForMinisterioFechaVigencia($data["ministerio"],$data["fecha"],$data["vigencia"]);
+                            
+                                require_once 'views/documentos/resultsOfSearch.php';
+
+                            }else{
+                                if(!empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["institucion"])){
+                                    $data['documentos']=$this->documento->getDocumentosForMinisterioFechaInstitucion($data["ministerio"],$data["fecha"],$data["institucion"]);
+                                
+                                    require_once 'views/documentos/resultsOfSearch.php';
+    
+                                }else{
+                                    if(!empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["autor"])){
+                                        $data['documentos']=$this->documento->getDocumentosForMinisterioFechaAutor($data["ministerio"],$data["fecha"],$data["autor"]);
+
+                                       // $data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                    
+                                        require_once 'views/documentos/resultsOfSearch.php';
+        
+                                    }else{
+                                        if(!empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["institucion"])){
+                                            $data['documentos']=$this->documento->getDocumentosForMinisterioFechaVigenciaInstitucion($data["ministerio"],$data["fecha"],$data["vigencia"],$data["institucion"]);
+                                        
+                                            require_once 'views/documentos/resultsOfSearch.php';
+            
+                                        }else{
+                                            if(!empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["autor"])){
+                                                $data['documentos']=$this->documento->getDocumentosForMinisterioFechaVigenciaAutor($data["ministerio"],$data["fecha"],$data["vigencia"],$data["autor"]);
+
+                                                //$data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                            
+                                                require_once 'views/documentos/resultsOfSearch.php';
+                
+                                            }else{
+                                                if(!empty($data["ministerio"]) && !empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["institucion"]) && !empty($data["autor"])){
+                                                    $data['documentos']=$this->documento->getDocumentosForMinisterioFechaVigenciaInstitucionAutor($data["ministerio"],$data["fecha"],$data["vigencia"],$data["institucion"],$data["autor"]);
+
+                                                    //$data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                
+                                                    require_once 'views/documentos/resultsOfSearch.php';
+                    
+                                                }else{
+            if(!empty($data["fecha"]) && !empty($data["vigencia"])){
+                $data['documentos']=$this->documento->getDocumentosForFechaVigencia($data["fecha"],$data["vigencia"]);
+                                                                                                                                        
+                require_once 'views/documentos/resultsOfSearch.php';
+                                                                                                    
+            }else{
+                if(!empty($data["fecha"]) && !empty($data["institucion"])){
+                    $data['documentos']=$this->documento->getDocumentosForFechaInstitucion($data["fecha"],$data["institucion"]);
+                                                                                                                                            
+                    require_once 'views/documentos/resultsOfSearch.php';
+                                                                                                        
+                }else{
+                    if(!empty($data["fecha"]) && !empty($data["autor"])){
+                        $data['documentos']=$this->documento->getDocumentosForFechaAutor($data["fecha"],$data["autor"]);
+                        
+                       // $data["autor"] = $this->documento->getNameAutor($data["autor"]);
+
+                        require_once 'views/documentos/resultsOfSearch.php';
+                                                                                                            
+                    }else{
+                        if(!empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["institucion"])){
+                            $data['documentos']=$this->documento->getDocumentosForFechaVigenciaInstitucion($data["fecha"],$data["vigencia"],$data["institucion"]);
+                        
+                            require_once 'views/documentos/resultsOfSearch.php';
+
+                        }else{
+                            if(!empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["autor"])){
+                                $data['documentos']=$this->documento->getDocumentosForFechaVigenciaAutor($data["fecha"],$data["vigencia"],$data["autor"]);
+
+                               // $data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                            
+                                require_once 'views/documentos/resultsOfSearch.php';
+    
+                            }else{
+                                if(!empty($data["fecha"]) && !empty($data["vigencia"]) && !empty($data["institucion"]) && !empty($data["autor"])){
+                                    $data['documentos']=$this->documento->getDocumentosForFechaVigenciaInstitucionAutor($data["fecha"],$data["vigencia"],$data["institucion"],$data["autor"]);
+
+                                    //$data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                
+                                    require_once 'views/documentos/resultsOfSearch.php';
+    
+                                }else{
+            if(!empty($data["vigencia"]) && !empty($data["institucion"])){
+                $data['documentos']=$this->documento->getDocumentosForVigenciaInstitucion($data["vigencia"],$data["institucion"]);
+                                                                                                                      
+                require_once 'views/documentos/resultsOfSearch.php';
+                                                                                                                            
+            }else{
+                if(!empty($data["vigencia"]) && !empty($data["autor"])){
+                    $data['documentos']=$this->documento->getDocumentosForVigenciaAutor($data["vigencia"],$data["autor"]);
+
+                    //$data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                                                                                      
+                    require_once 'views/documentos/resultsOfSearch.php';
+                                                                                                                          
+                }else{
+                    if(!empty($data["vigencia"]) && !empty($data["institucion"]) &&!empty($data["autor"])){
+                        $data['documentos']=$this->documento->getDocumentosForVigenciaInstitucionAutor($data["vigencia"],$data["institucion"],$data["autor"]);
+
+                        //$data["autor"] = $this->documento->getNameAutor($data["autor"]);
+                                                                                                                   
+                        require_once 'views/documentos/resultsOfSearch.php';
+                                                                                                                        
+                    }else{
+                        if(!empty($data["institucion"]) && !empty($data["autor"])){
+                            $data['documentos']=$this->documento->getDocumentosForInstitucionAutor($data["institucion"],$data["autor"]);
+
+                           // $data["autor"] = $this->documento->getNameAutor($data["autor"]);
+
+                            require_once 'views/documentos/resultsOfSearch.php';
+                                                                                                                           
+                        }
+                    }
+                }
+            }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

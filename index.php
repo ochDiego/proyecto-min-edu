@@ -3,7 +3,6 @@
     require_once 'assets/config/config.php';
     require_once 'assets/core/routes.php';
     require_once 'assets/config/Database.php';
-    require_once 'assets/config/functions.php';
     require_once 'controllers/Documento.php';
 
     if(!empty($_GET['c'])){

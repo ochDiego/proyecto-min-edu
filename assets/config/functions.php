@@ -1,5 +1,5 @@
 <?php
-
+/* 
     function modificarFecha($fecha)
     {
         $fecha=str_replace('-','/',date('d-m-Y',strtotime($fecha)));
@@ -53,4 +53,4 @@
         }
 
         return $fecha;
-    }
+    } */

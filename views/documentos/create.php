@@ -28,37 +28,62 @@
                     <div class="card-body">
                        <form class="row" action="index.php?c=Documento&m=store" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <div class="col-3">
-                                <div class="mb-3">
-                                  <label for="titulo" class="form-label">Título:</label>
-                                  <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Ingrse el título" aria-describedby="helpId" autofocus required>
+                            <div class="mb-3">
+                                  <label for="titulo" class="form-label">Título</label>
+                                  <select class="form-select form-select-md" name="titulo" id="titulo">
+                                    <option selected>Select one</option>
+                                    <option value="">New Delhi</option>
+                                    <option value="">Istanbul</option>
+                                    <option value="">Jakarta</option>
+                                  </select>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="mb-3">
-                                  <label for="expediente" class="form-label">Expediente:</label>
-                                  <input type="text" name="expediente" id="expediente" class="form-control" placeholder="Ingrese el expediente" aria-describedby="helpId" required>
+                                  <label for="ministerio" class="form-label">Ministerio</label>
+                                  <select class="form-select form-select-md" name="ministerio" id="ministerio">
+                                    <option selected>Select one</option>
+                                    <option value="">New Delhi</option>
+                                    <option value="">Istanbul</option>
+                                    <option value="">Jakarta</option>
+                                  </select>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="mb-3">
-                                  <label for="nombreAutor" class="form-label">Nombre del autor:</label>
-                                  <input type="text" name="nombreAutor" id="nombreAutor" class="form-control" placeholder="Ingrese el nombre" aria-describedby="helpId" required>
+                                  <label for="nombreAutor" class="form-label">Nombre del firmante</label>
+                                  <select class="form-select form-select-md" name="nombreAutor" id="nombreAutor">
+                                    <option selected>Select one</option>
+                                    <option value="">New Delhi</option>
+                                    <option value="">Istanbul</option>
+                                    <option value="">Jakarta</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                              <div class="mb-3">
+                                  <label for="apellidoAutor" class="form-label">Apellido del firmante</label>
+                                  <select class="form-select form-select-md" name="apellidoAutor" id="apellidoAutor">
+                                    <option selected>Select one</option>
+                                    <option value="">New Delhi</option>
+                                    <option value="">Istanbul</option>
+                                    <option value="">Jakarta</option>
+                                  </select>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="mb-3">
-                                  <label for="apellidoAutor" class="form-label">Apellido del autor:</label>
-                                  <input type="text" name="apellidoAutor" id="apellidoAutor" class="form-control" placeholder="Ingrese el apellido" aria-describedby="helpId" required>
-                                </div>
-                            </div>
-
-                            <div class="col-3">
-                                <div class="mb-3">
-                                  <label for="entidad" class="form-label">Entidad:</label>
-                                  <input type="text" name="entidad" id="entidad" class="form-control" placeholder="Ingrese la entidad" aria-describedby="helpId" required>
+                                  <label for="entidad" class="form-label">Institución</label>
+                                  <select class="form-select form-select-md" name="entidad" id="entidad">
+                                    <option selected>Select one</option>
+                                    <option value="">New Delhi</option>
+                                    <option value="">Istanbul</option>
+                                    <option value="">Jakarta</option>
+                                  </select>
                                 </div>
                             </div>
 
@@ -96,14 +121,6 @@
                                     </div>
                                   </div>
                                 </div>
-
-
-
-
-                                <!-- <div class="mb-3">
-                                  <label for="fechaSuscripcion" class="form-label">Fecha de suscripción:</label>
-                                  <input type="date" name="fechaSuscripcion" id="fechaSuscripcion" class="form-control" placeholder="Ingrese la fecha" aria-describedby="helpId" required>
-                                </div> -->
                             </div>
 
                              <div class="col-2">
@@ -170,8 +187,13 @@
                             </div>
                             <div class="col-2">
                                 <div class="mb-3">
-                                  <label for="vigencia" class="form-label">Vigencia:</label>
-                                  <input type="date" name="vigencia" id="vigencia" class="form-control" placeholder="Ingrese su naturaleza,alcance y forma" aria-describedby="helpId" required>
+                                  <label for="" class="form-label">Vigencia</label>
+                                  <select class="form-select form-select-md" name="" id="">
+                                    <option selected>Select one</option>
+                                    <option value="">New Delhi</option>
+                                    <option value="">Istanbul</option>
+                                    <option value="">Jakarta</option>
+                                  </select>
                                 </div>
                             </div>
 
@@ -221,13 +243,6 @@
                                 <div class="mb-3">
                                   <label for="responsable" class="form-label">Responsable:</label>
                                   <input type="text" name="responsable" id="responsable" class="form-control" placeholder="Ingrese el nombre y apellido" aria-describedby="helpId"  required>
-                                </div>
-                            </div>
-
-                            <div class="col-3">
-                                <div class="mb-3">
-                                  <label for="autorInstitucional" class="form-label">Autor institucional:</label>
-                                  <input type="text" name="autorInstitucional" id="autorInstitucional" class="form-control" placeholder="Ingrese la carpeta" aria-describedby="helpId">
                                 </div>
                             </div>
 

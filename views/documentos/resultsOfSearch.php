@@ -31,9 +31,9 @@
 
             <?php endif ?>
 
-            <?php if(!empty($data['tipoDocumento'])): ?>
+            <?php if(!empty($data['institucion'])): ?>
 
-                <p class="mb-3"><strong>Tipo de documento:</strong> <?= $data['tipoDocumento']; ?></p>
+                <p class="mb-3"><strong>Autor institucional:</strong> <?= $data['institucion']; ?></p>
 
             <?php endif ?>
 
@@ -51,13 +51,12 @@
                 <table class="table table-striped table-bordered shadow-lg table-sm" style="width:100%">
                     <thead class="bg-dark text-white">
                         <tr>
+                            <th class="text-center align-middle" scope="col">Ministerio de educación</th>
+                            <th class="text-center align-middle" scope="col">Autor institucional</th>
                             <th class="text-center align-middle" scope="col">Título</th>
-                            <th class="text-center align-middle" scope="col">Ministerio</th>
-                            <th class="text-center align-middle" scope="col">Institución</th>
                             <th class="text-center align-middle" scope="col">Firmante</th>
                             <th class="text-center align-middle" scope="col">Fecha de suscripción</th>
                             <th class="text-center align-middle" scope="col">Vigencia</th>
-                            <th class="text-center align-middle" scope="col">Tipo de documento</th>
                             <th class="text-center align-middle" scope="col" style="width: 100;">Acciones</th>
                         </tr>
                     </thead>
@@ -65,13 +64,12 @@
                                 
                                     <?php foreach($data['documentos'] as $documento): ?>
                                         <tr class="">
-                                            <td class="text-center align-middle" scope="row"><small><?= $documento['titulo']; ?></small></td>
                                             <td class="text-center align-middle"><small><?= $documento['ministerio']; ?></small></td>
-                                            <td class="text-center align-middle"><small><?= $documento['entidad']; ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['institucion']; ?></small></td>
+                                            <td class="text-center align-middle" scope="row"><small><?= $documento['titulo']; ?></small></td>
                                             <td class="text-center align-middle"><small><?= $documento['autor']; ?></small></td>
-                                            <td class="text-center align-middle"><small><?= modificarFecha($documento['fechaSuscripcion']); ?></small></td>
+                                            <td class="text-center align-middle"><small><?= $documento['fechaSuscripcion']; ?></small></td>
                                             <td class="text-center align-middle"><small><?= $documento['vigencia']; ?></small></td>
-                                            <td class="text-center align-middle"><small><?= $documento['tipoDocumento']; ?></small></td>
                                             <td class="text-center align-middle">
                                                 
                                                 <a name="" id="" class="btn btn-primary btn-sm d-block" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver más</a>

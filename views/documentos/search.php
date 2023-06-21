@@ -76,15 +76,15 @@
                                     </div>
 
                                     <div class="col-6">
-                                        <div class="mb-3">
-                                            <label for="tipoDocumento" class="form-label fw-bold">Documento</label>
-                                            <select class="form-select form-select-sm" name="tipoDocumento" id="tipoDocumento">
-                                                <option value="none" selected disabled hidden>Tipo de documento</option>
-                                                <?php foreach($data['tipoDocumentos'] as $tipoDocumento): ?>
-                                                    <option value="<?= $tipoDocumento['nombre']; ?>"><?= $tipoDocumento['nombre']; ?></option>
-                                                <?php endforeach ?>
-                                            </select>
-                                        </div>
+                                       <div class="mb-3">
+                                        <label for="institucion" class="form-label">Autor institucional</label>
+                                        <select class="form-select form-select-sm" name="institucion" id="institucion">
+                                            <option value="none" selected disabled hidden>Institución</option>
+                                            <?php foreach($data["instituciones"] as $institucion): ?>
+                                                <option value="<?=$institucion["nombre"]; ?>"><?=$institucion["nombre"]; ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                       </div>
                                     </div>
 
                                 </div>

@@ -341,7 +341,7 @@
             $sentencia->bindParam(1,$id);
             $sentencia->execute();
             $response = $sentencia->fetch(PDO::FETCH_ASSOC);
-
+            
             return $response["nombre"];
         }
 

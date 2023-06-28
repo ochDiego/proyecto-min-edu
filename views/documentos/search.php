@@ -24,28 +24,36 @@
                         <form action="index.php?c=Documento&m=resultsOfSearch" method="POST" autocomplete="off" class="row">
 
                             <div class="col-6">
+
                                 <div class="mb-3">
-                                    <label for="titulo" class="form-label fw-bold">Tipo</label>
-                                    <select class="form-select form-select-sm" name="titulo" id="titulo">
-                                        <option value="none" selected disabled hidden>Título</option>
+                                    <label for="titulo" class="form-label fw-bold">Título</label>
+                                    <input name="titulo" type="list" list="titulos" class="form-control">
+
+                                    <datalist id="titulos">
                                         <?php foreach($data['titulos'] as $titulo): ?>
-                                            <option value="<?= $titulo['nombre']; ?>"><?= $titulo['nombre']; ?></option>
+                                            <option value="<?= $titulo['nombre']; ?>"></option>
                                         <?php endforeach ?>
-                                    </select>
+                                    </datalist>
+
                                 </div>
+
+
                             </div>
 
                             <div class="col-6">
-                                 
+
                                 <div class="mb-3">
                                     <label for="ministerio" class="form-label fw-bold">Ministerio</label>
-                                    <select class="form-select form-select-sm" name="ministerio" id="ministerio">
-                                        <option value="none" selected disabled hidden>Ministerios</option>
+                                    <input id="ministerio" name="ministerio" type="list" list="ministerios" class="form-control">
+
+                                    <datalist id="ministerios">
                                         <?php foreach($data['ministerios'] as $ministerio): ?>
-                                            <option value="<?= $ministerio['nombre']; ?>"><?= $ministerio['nombre']; ?></option>
+                                            <option value="<?= $ministerio['nombre']; ?>"></option>
                                         <?php endforeach ?>
-                                    </select>
+                                    </datalist>
+
                                 </div>
+                                
                               
                             </div>
 
@@ -76,15 +84,18 @@
                                     </div>
 
                                     <div class="col-6">
-                                       <div class="mb-3">
-                                        <label for="institucion" class="form-label">Autor institucional</label>
-                                        <select class="form-select form-select-sm" name="institucion" id="institucion">
-                                            <option value="none" selected disabled hidden>Institución</option>
-                                            <?php foreach($data["instituciones"] as $institucion): ?>
-                                                <option value="<?=$institucion["nombre"]; ?>"><?=$institucion["nombre"]; ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                       </div>
+
+                                        <div class="mb-3">
+                                            <label for="institucion" class="form-label fw-bold">Institución</label>
+                                            <input id="institucion" name="institucion" type="list" list="instituciones" class="form-control">
+
+                                            <datalist id="instituciones">
+                                                <?php foreach($data['instituciones'] as $institucion): ?>
+                                                    <option value="<?= $institucion['nombre']; ?>"></option>
+                                                <?php endforeach ?>
+                                            </datalist>
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -93,22 +104,26 @@
                           <div class="col-12">
                             <div class="row">
                                 <div class="col-6">
+
                                     <div class="mb-3">
                                         <label for="autor" class="form-label fw-bold">Firmante</label>
-                                        <select class="form-select form-select-sm" name="autor" id="autor">
-                                            <option value="none" selected disabled hidden>Nombre y apellido</option>
+                                        <input id="autor" name="autor" type="list" list="autores" class="form-control">
+
+                                        <datalist id="autores">
                                             <?php foreach($data['autores'] as $autor): ?>
                                                 <option value="<?= $autor['id']; ?>"><?= $autor['firmante']; ?></option>
                                             <?php endforeach ?>
-                                        </select>
+                                        </datalist>
                                     </div>
+
+
                                 </div>
 
                                 <div class="col-6">
                                                 
                                     <div class="row">
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <a name="" id="" class="btn btn-danger mt-4 px-5" href="index.php?c=Documento&m=search" role="button">Cancelar</a>
+                                        <div class="col-12 d-flex justify-content-evenly">
+                                            <a name="" id="" class="btn btn-danger mt-4 px-5 " href="index.php?c=Documento&m=search" role="button">Cancelar</a>
 
                                             <button type="submit" class="btn btn-success mt-4 px-5"> <i class="fa fa-search"></i> Buscar</button>
                                         </div>

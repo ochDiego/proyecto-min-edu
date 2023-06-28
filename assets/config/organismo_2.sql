@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2023 a las 00:00:10
+-- Tiempo de generación: 28-06-2023 a las 22:58:00
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -1140,7 +1140,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_ministerio` ()  BEGIN
         END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_name_autor` (IN `_id` INT)  BEGIN
-        	SELECT CONCAT(nombre,' ',apellido) AS nombre FROM autor WHERE id = _id LIMIT 1;
+        	SELECT CONCAT(nombre,', ',apellido) AS nombre FROM autor WHERE id = _id LIMIT 1;
 		END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_titulos` ()  BEGIN
@@ -1373,7 +1373,16 @@ INSERT INTO `documento` (`id`, `titulo_id`, `min_edu_id`, `fechaSuscripcion`, `v
 (3, 1, 1, '2016', 2, 3, 9, 3, 1, 3, NULL, NULL, 1),
 (4, 1, 1, '2016', 2, 3, 9, 4, 1, 4, NULL, NULL, 1),
 (5, 1, 1, '2016', 2, 3, 9, 5, 1, 5, NULL, NULL, 1),
-(6, 1, 1, '2016', 2, 3, 9, 6, 1, 6, NULL, NULL, 1);
+(6, 1, 1, '2016', 2, 3, 9, 6, 1, 6, NULL, NULL, 1),
+(7, 1, 1, '2016', 2, 3, 9, 7, 1, 7, NULL, NULL, 1),
+(8, 1, 1, '2016', 2, 3, 9, 8, 1, 8, NULL, NULL, 1),
+(9, 1, 1, '2016', 2, 3, 9, 9, 1, 9, NULL, NULL, 1),
+(10, 2, 1, 'nov/2016', 2, 3, 9, 10, 1, 10, NULL, NULL, 1),
+(11, 3, 1, '22/may/2017', 2, 1, 11, 11, 1, 10, NULL, NULL, 1),
+(12, 49, 1, '16/nov/2016', 2, 25, 7, 10, 1, 10, NULL, NULL, 1),
+(13, 49, 1, '20/sept/2018', 2, 11, 11, 10, 1, 10, NULL, NULL, 1),
+(14, 73, 1, '27/oct/2016', 2, 51, 7, 10, 1, 10, NULL, NULL, 1),
+(15, 73, 1, '27/oct/2016', 2, 51, 7, 10, 1, 10, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1421,7 +1430,8 @@ INSERT INTO `institucion` (`id`, `nombre`) VALUES
 (7, 'Municipalidad de 9 de Julio. San Juan'),
 (8, 'Municipalidad de Jachal. San Juan'),
 (9, 'Municipalidad de Iglesia. San Juan'),
-(10, 'Universidad Católica de Cuyo. San Luis');
+(10, 'Universidad Católica de Cuyo. San Luis'),
+(11, 'Universidad Nacional de San Juan. San Juan');
 
 -- --------------------------------------------------------
 
@@ -1696,7 +1706,8 @@ INSERT INTO `titulos` (`id`, `nombre`) VALUES
 (69, 'Convenio de colaboración entre la Municipalidad de Angaco y la Escuela Isla Vice Comodoro Marambio'),
 (70, 'Acta complementaria de Convenios marco entre el Gobierno de la Provincia de San Juan, Universidad Nacional de San Juan y Universidad Católica de Cuyo'),
 (71, 'Acta 01'),
-(72, 'Modelo de acta intención');
+(72, 'Modelo de acta intención'),
+(73, 'Acta complementaria Ministerio de Educación de la Provincia de San Juan, Facultad de Filosofía y Humanidades de la Universidad Católica de Cuyo');
 
 -- --------------------------------------------------------
 
@@ -1898,7 +1909,7 @@ ALTER TABLE `descripfisica`
 -- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `entidad`
@@ -1910,7 +1921,7 @@ ALTER TABLE `entidad`
 -- AUTO_INCREMENT de la tabla `institucion`
 --
 ALTER TABLE `institucion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `ministerio_educacion`
@@ -1940,7 +1951,7 @@ ALTER TABLE `termino_propuesto`
 -- AUTO_INCREMENT de la tabla `titulos`
 --
 ALTER TABLE `titulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicacion`

@@ -56,9 +56,9 @@
                                             
                                             <td class="text-center align-middle">
                                                 
-                                                <a name="" id="" class="btn btn-primary btn-sm d-block" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver más</a>
+                                                <a name="" id="" class="btn btn-primary btn-sm" href="index.php?c=Documento&m=show&id=<?= $documento['idDocumento'];?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Ver más</a>
 
-                                                <a name="" id="" class="btn btn-secondary btn-sm px-4 d-block" href="assets/archivos/<?= $documento['archivoAdjunto']; ?>" target="_BLANK" role="button">PDF</a>
+                                                <a name="" id="" class="btn btn-secondary btn-sm px-4" href="assets/archivos/<?= $documento['archivoAdjunto']; ?>" target="_BLANK" role="button">PDF</a>
 
                                             <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "Administrador"): ?>
                                                 <a name="" id="" class="btn btn-info btn-sm d-block" href="index.php?c=Documento&m=edit&id=<?= $documento['idDocumento']; ?>&token=<?= hash_hmac('sha1',$documento['idDocumento'],KEY_TOKEN); ?>" role="button">Editar</a>

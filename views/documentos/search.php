@@ -26,15 +26,18 @@
                             <div class="col-6">
 
                                 <div class="mb-3">
-                                    <label for="titulo" class="form-label fw-bold">Título</label>
-                                    <input name="titulo" type="list" list="titulos" class="form-control">
+                                    <div class="mb-3">
+                                        <label for="tituloBuscador" class="form-label">Título</label>
+                                        <select class="form-select form-select-sm" name="titulo" id="tituloBuscador">
+                                            
+                                            <option value="none" selected disabled hidden></option>
 
-                                    <datalist id="titulos">
-                                        <?php foreach($data['titulos'] as $titulo): ?>
-                                            <option value="<?= $titulo['nombre']; ?>"></option>
-                                        <?php endforeach ?>
-                                    </datalist>
+                                            <?php foreach($data['titulos'] as $titulo): ?>
+                                                <option value="<?= $titulo['nombre']; ?>"><?= $titulo['nombre']; ?></option>
+                                            <?php endforeach ?>
 
+                                        </select>
+                                    </div>
                                 </div>
 
 
@@ -42,18 +45,22 @@
 
                             <div class="col-6">
 
+
                                 <div class="mb-3">
-                                    <label for="ministerio" class="form-label fw-bold">Ministerio</label>
-                                    <input id="ministerio" name="ministerio" type="list" list="ministerios" class="form-control">
+                                    <div class="mb-3">
+                                        <label for="ministerioBuscador" class="form-label">Ministerio</label>
+                                        <select class="form-select form-select-sm" name="ministerio" id="ministerioBuscador">
+                                            
+                                            <option value="none" selected disabled hidden></option>
 
-                                    <datalist id="ministerios">
-                                        <?php foreach($data['ministerios'] as $ministerio): ?>
-                                            <option value="<?= $ministerio['nombre']; ?>"></option>
-                                        <?php endforeach ?>
-                                    </datalist>
+                                            <?php foreach($data['ministerios'] as $ministerio): ?>
+                                                <option value="<?= $ministerio['nombre']; ?>"><?= $ministerio['nombre']; ?></option>
+                                            <?php endforeach ?>
 
+                                        </select>
+                                    </div>
                                 </div>
-                                
+
                               
                             </div>
 
@@ -61,9 +68,9 @@
                                 <div class="row">                          
                                     <div class="col-3">
                                         <div class="mb-3">
-                                            <label for="fecha" class="form-label fw-bold">Fecha</label> 
-                                            <select class="form-select form-select-sm" name="fecha" id="fecha">
-                                                <option value="none" selected disabled hidden>Año</option>
+                                            <label for="fechaBuscador" class="form-label">Año</label> 
+                                            <select class="form-select form-select-sm" name="fecha" id="fechaBuscador">
+                                                <option value="none" selected disabled hidden></option>
                                                 <?php for($i=2023; $i >= 1995; $i--):?>
                                                     <option value="<?= $i; ?>"><?= $i; ?></option>
                                                 <?php endfor ?>
@@ -73,9 +80,9 @@
 
                                     <div class="col-3">
                                         <div class="mb-3">
-                                            <label for="vigencia" class="form-label fw-bold">Vigencia</label>
-                                            <select class="form-select form-select-sm" name="vigencia" id="vigencia">
-                                                <option value="none" selected disabled hidden>Estado</option>
+                                            <label for="vigenciaBuscador" class="form-label">Vigencia</label>
+                                            <select class="form-select form-select-sm" name="vigencia" id="vigenciaBuscador">
+                                                <option value="none" selected disabled hidden></option>
                                                 <?php foreach($data['vigencias'] as $vigencia): ?>
                                                     <option value="<?= $vigencia['nombre']; ?>"><?= $vigencia['nombre']; ?></option>
                                                 <?php endforeach ?>
@@ -86,14 +93,18 @@
                                     <div class="col-6">
 
                                         <div class="mb-3">
-                                            <label for="institucion" class="form-label fw-bold">Institución</label>
-                                            <input id="institucion" name="institucion" type="list" list="instituciones" class="form-control">
+                                           
+                                            <label for="institucionBuscador" class="form-label">Institución</label>
+                                            <select class="form-select form-select-sm" name="institucion" id="institucionBuscador">
+                                                    
+                                                <option value="none" selected disabled hidden></option>
 
-                                            <datalist id="instituciones">
                                                 <?php foreach($data['instituciones'] as $institucion): ?>
-                                                    <option value="<?= $institucion['nombre']; ?>"></option>
+                                                    <option value="<?= $institucion['nombre']; ?>"><?= $institucion['nombre']; ?></option>
                                                 <?php endforeach ?>
-                                            </datalist>
+
+                                            </select>
+                                           
                                         </div>
 
                                     </div>
@@ -106,14 +117,18 @@
                                 <div class="col-6">
 
                                     <div class="mb-3">
-                                        <label for="autor" class="form-label fw-bold">Firmante</label>
-                                        <input id="autor" name="autor" type="list" list="autores" class="form-control">
 
-                                        <datalist id="autores">
+                                        <label for="autorBuscador" class="form-label">Firmante</label>
+                                        <select class="form-select form-select-sm" name="autor" id="autorBuscador">
+                                                    
+                                            <option value="none" selected disabled hidden></option>
+
                                             <?php foreach($data['autores'] as $autor): ?>
                                                 <option value="<?= $autor['id']; ?>"><?= $autor['firmante']; ?></option>
                                             <?php endforeach ?>
-                                        </datalist>
+
+                                        </select>
+
                                     </div>
 
 
@@ -152,4 +167,30 @@
        
          
 <?php require_once 'views/templates/footer.php'; ?>
+
+<script>
+    $(document).ready(function(){
+        $('#tituloBuscador').select2();
+    })
+
+    $(document).ready(function(){
+        $('#ministerioBuscador').select2();
+    })
+
+    $(document).ready(function(){
+        $('#institucionBuscador').select2();
+    })
+
+    $(document).ready(function(){
+        $('#autorBuscador').select2();
+    })
+
+    $(document).ready(function(){
+        $('#fechaBuscador').select2();
+    })
+
+    $(document).ready(function(){
+        $('#vigenciaBuscador').select2();
+    })
+</script>
 

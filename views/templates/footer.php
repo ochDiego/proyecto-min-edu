@@ -21,6 +21,7 @@
 
     <script src="js/jquery-3.6.4.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/select2.min.js"></script>
 </body>
 
 </html>

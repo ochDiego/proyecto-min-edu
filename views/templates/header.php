@@ -16,6 +16,9 @@
     <!-- Bootstrap CSS v5.2.1 and dataTables -->
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 
+    <!-- Select2 -->
+    <link rel="stylesheet" href="css/select2.min.css">
+
     <!-- SweetAlert -->
     <script src="js/sweetalert2@11.js"></script>
 
